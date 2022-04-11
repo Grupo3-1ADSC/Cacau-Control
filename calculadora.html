@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Financeira</title>
+<link rel="stylesheet" href="styles/calculadora/calculadora.css">
+</head>
+
+<body>
+
+
+  <div id="fundo"></div>
+  <div style="margin-top: -5%;">
+    <div class="div_1"> <br> <br>
+    <b> Calcule seu investimento! </b>
+    </div>
+    <br> 
+    <br>
+    <div class="div_input">
+      
+    <input id="ColheitaIdeal" class="input1" placeholder="Quantidade da colheita total Kg">
+    
+    <br>
+
+    <input id="Perda" class="input2" placeholder="Quantidade de perda Kg">
+    
+    <br>
+
+    <input id="Valor" class="input3" placeholder="Valor do Kg em R$">  <br>
+
+     
+    </div>
+<br>
+<div id="div1" class="result"></div> <br>
+    <button class="botao1" ; onclick="calcular()"> Calcular Valores
+    </button>
+    <button class="botao2" onclick="Recomeço()"> Nova Análise </button>
+    <br>
+    <br>
+    <div id=div2 ></div>
+  </div>
+
+</body>
+
+</html>
+
+<script>
+  function calcular() {
+
+
+    var Colheita = ColheitaIdeal.value
+    var ValorPorKg = Valor.value
+    var PerdaPorKg = Perda.value
+
+    var LucroIdeal = Colheita * ValorPorKg 
+    var ColheitaReal = (Colheita - PerdaPorKg)
+    var valor_perdido_porcentagem = (100 * PerdaPorKg) / Colheita
+    var LucroReal = ColheitaReal * ValorPorKg
+    var valor_vendido_porcentagem = LucroReal * 100 / LucroIdeal
+
+    div1.innerHTML = `Você colhe ${Colheita} KG, mas consegue vender apenas ${valor_vendido_porcentagem}% de tudo que colheu <br>
+        Tendo assim uma receita de R$${LucroReal} <br> 
+        Sendo que sua receita deveria ser de R$${LucroIdeal} <br>
+        Ou seja você perde ${valor_perdido_porcentagem}%`;
+    fundo.style.height = "120vh";
+    div1.style.backgroundColor = "#fffdd09c";
+    div1.style.width = "45%";
+    div1.style.borderStyle = "solid";
+    div1.style.borderWidth = "3px";
+    div1.style.borderColor = "peru";
+    div1.style.borderRadius = "5px";
+    div1.style.display = "block";
+    div1.style.paddingStart = "10px";
+
+
+  }
+  function Recomeço() {
+
+    div1.innerHTML = ""
+    ColheitaIdeal.value = ""
+    Perda.value = ""
+    Valor.value = ""
+    div1.style.display = "none"
+  }
+
+</script>
