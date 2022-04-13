@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" href="imgs/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- link do chartJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- link font Awesome -->
+    <script src="https://kit.fontawesome.com/0de1e0c120.js" crossorigin="anonymous"></script>
+
+    <title>Cacau Control || Home</title>
+</head>
+
+<body>
+    <!-- side bar -->
+    <div class="sideBar">
+        <div class="divItemSideB closeIcon"><i class="fas fa-window-close"></i></div>
+        <div class="divItemSideB"><a href="dashBoard.html"><i class="fas fa-cloud-sun"></i></a></div>
+        <div class="divItemSideB SideActive"><i class="fa fa-regular fa-money-bill"></i></div>
+        <div class="divItemSideB"><i class="fas fa-cog"></i></div>
+
+    </div>
+    <!--  -->
+    <div class="contentAll">
+        <!-- navbar -->
+        <nav>
+            <div class="logoTipo">
+                <img src="imgs/logo.png" alt="logo">
+                <span>Cacau Control</span>
+            </div>
+            <div class="divGraficosUser">
+                <img src="imgs/logoUser.png" alt=""> Lorem ipsum
+            </div>
+        </nav>
+        <!--  -->
+        <div class="divContentSelectSensorData">
+            <div class="tempSensor">
+                <span>Receita Esperada</span>
+                <img class="alert" src="imgs/alertIcon.png" alt="">
+            </div>
+            <div class="dateOptions">
+                <input type="date" name="" id="">
+                <div class="divMoreIcon">
+                    <img src="imgs/moreIcon.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="divGrafico">
+            <div class="painel">
+                <canvas id="barChart" style="width:90%;max-width:1000px"></canvas>
+            </div>
+        </div>
+        <!-- depois do gráfico de receita -->
+        <div class="ContentPainelReceita">
+            <div class="painelReceitas">
+                <div class="contentBar">
+                    <div class="bar barReceita barReceitaVerde"></div>
+                    <span class="textBar">Receita esperada</span>
+                    <div class="bar barReceita barReceitaVermelha"></div>
+                    <span class="textBar">Perdas</span>
+                </div>
+                <div class="valorReceita">
+                    <h1>R$900.00</h1>
+                    <span class="textBar">Total</span>
+
+                    <div class="dateOptions">
+                        <input type="date" name="" id="">
+                        <div class="divMoreIcon moreIconINReceita">
+                            <img src="imgs/moreIcon.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="barraReceita">
+                    <div class="divBarraPerdas"></div>
+                </div>
+                <div class="contentBar infografico">
+                    <div class="bar barReceita barReceitaVerde"></div>
+                    <span class="textBar textInfo">R$ 1.000.000</span>
+                    <div class="bar barReceita barReceitaVermelha"></div>
+                    <span class="textBar textInfo">R$ 100.000</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script src="scripts/graficoTemperatura.js"></script>
+<script src="scripts/graficoUmidade.js"></script>
+<script src="scripts/graficoReceita.js"></script>c

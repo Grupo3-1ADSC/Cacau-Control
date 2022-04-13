@@ -1,0 +1,358 @@
+body {
+    margin: 0;
+    padding: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+    width: 98vw;
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+.contentAll {
+    margin-left: 10%;
+}
+
+.sideBar {
+    display: flex;
+    position: fixed;
+    border-right: 1px solid #D0D1D2;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    width: 10%;
+    flex-direction: column;
+    background-color: white;
+}
+
+.divItemSideB {
+    margin-top: 70%;
+    font-size: 1.5rem;
+    color: #939495;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8%;
+    transition: 500ms;
+    cursor: pointer;
+}
+
+.divItemSideB a{
+    color: #939495;
+}
+
+.divItemSideB a:hover{
+    color: #a89846;
+}
+
+.divItemSideB:hover {
+    color: #a89846;
+}
+
+.SideActive {
+    color: #D9BD2A;
+    border-right: 3px solid #D9BD2A;
+}
+
+.SideActive:hover {
+    color: #D9BD2A;
+    border-right: 3px solid #D9BD2A;
+}
+
+.closeIcon {
+    margin-top: 30%;
+    font-size: 1.8rem;
+    color: #11263C;
+}
+
+.closeIcon:hover {
+    margin-top: 30%;
+    font-size: 1.8rem;
+    color: #386291;
+}
+
+
+/* navBar */
+
+nav {
+    width: 90%;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logoTipo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+    margin-left: 3%;
+    gap: 3%;
+}
+
+.logoTipo img {
+    width: 18%;
+}
+
+.logoTipo span {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #11263C;
+}
+
+.divGraficosUser {
+    display: flex;
+    height: 100%;
+    width: 50%;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 3%;
+    gap: 7%;
+}
+
+.divGraficosUser button {
+    height: 2rem;
+    font-size: 1.2rem;
+    color: #D9BD2A;
+    background-color: white;
+    border: 1px solid #D9BD2A;
+    border-radius: 4px;
+    transition: 800ms;
+}
+
+.divGraficosUser button:hover {
+    background-color: #D9BD2A;
+    color: white;
+    border: 1px solid #D9BD2A;
+    cursor: pointer;
+}
+
+.divGraficosUser img {
+    width: 10%;
+}
+
+
+/* div do sensor e data */
+
+.divContentSelectSensorData {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 8vh;
+    justify-content: space-between;
+}
+
+.tempSensor {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    height: 90%;
+    margin-left: 4%;
+    gap: 3%;
+}
+
+.tempSensor span {
+    color: #11263C;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.bar {
+    width: 5%;
+    height: 10%;
+    background-color: #D9BD2A;
+    border-radius: 12px;
+}
+
+.alert {
+    width: 2%;
+    padding: 3px;
+    border: 2px solid #D0D1D2;
+    border-radius: 20px;
+}
+
+.divSensor {
+    padding: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #D0D1D2;
+    border-radius: 5px;
+    width: 8rem;
+    gap: 2%;
+    transition: 400ms;
+}
+
+.divSensor:hover {
+    border: 1px solid #939494;
+}
+
+.divSensor img {
+    width: 20%;
+}
+
+.tempSensor select {
+    border: 1px solid white;
+    color: #11263C;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    outline: #939494;
+}
+
+.tempSensor select option {
+    background-color: #D0D1D2;
+    color: #11263C;
+    border: 1px solid white;
+}
+
+.tempSensor select:hover {
+    border: 1px solid white;
+}
+
+.dateOptions {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 3%;
+}
+
+.divMoreIcon {
+    width: 7%;
+    height: 50%;
+    border: 1px solid #D0D1D2;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 800ms;
+}
+
+.divMoreIcon:hover {
+    border: 1px solid #939494;
+}
+
+.divMoreIcon img {
+    width: 50%;
+}
+
+.divGrafico {
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.painel {
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divUmidade {
+    background-color: #1EC9E0;
+}
+
+/* RECEITA */
+
+.ContentPainelReceita{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: -2%;
+    height:30vh;
+}
+
+.painelReceitas{
+    width: 60%;
+    height: 100%;
+}
+
+.contentBar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+    height: 10%;
+    margin-bottom: 2%;
+}
+
+.barReceita{
+    height: 20%;
+    width: 8%;
+    margin-right: -15%;
+    font-weight: 900;
+} 
+
+.barReceitaVerde{
+    background-color: #29E930;
+}
+
+.barReceitaVermelha{
+    background-color: red;
+}
+
+.textBar{
+    color: #939494;
+}
+
+
+.valorReceita{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 5%;
+}
+
+.valorReceita h1{
+    color: #11263C;
+    font-weight: 900;
+    font: 1.4rem;
+    margin-left: -2%;
+    margin-right: -17%;
+}
+
+.moreIconINReceita{
+    width: 12%;
+    height: 4vh;
+}
+
+.barraReceita{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 8%;
+    border-radius: 20px;
+    background-color: #29E930;
+}
+
+.divBarraPerdas{
+    width: 20%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: red;
+}
+
+.infografico{
+    margin-top: 4%;
+    font-weight: 800;
+}
+
+.textInfo{
+    color: #11263C;
+}

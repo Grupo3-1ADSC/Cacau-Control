@@ -1,0 +1,433 @@
+body{
+    margin:0;
+    padding: 0;
+    border: 0;
+    font-family: 'Rajdhani', 'Manrope', sans-serif;
+    width: 98vw;
+    position: relative;
+}
+
+a{
+    text-decoration: none;
+}
+.sectionInitial{
+    width: 100%;
+    height:100vh;
+    margin-bottom: 10%;
+}
+.divBlur{
+    position: absolute;
+    width: 60vw;height: 90vh; 
+    left: 0;top:-10%;
+    border-radius: 0 0 1000px ; 
+    background-color: #cb8c17;
+    opacity:30%; 
+    z-index: 1;
+    filter:blur(4px);
+    -o-filter:blur(15px);
+    -ms-filter:blur(15px);
+    -moz-filter:blur(15px);
+    -webkit-filter:blur(15px);  
+}
+.navbar{
+    width: 100%;
+    height: 10%;
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-around;
+    font-weight: 600;
+    font-size: 1.2rem;
+
+}
+
+.navbar ul {
+    padding: 0;
+    display: flex;  
+    justify-content: center;
+    width: 30%;
+    align-items: center;
+    gap:5%;
+    z-index: 10;
+
+}
+
+.navbar ul li{
+    list-style: none;
+    cursor: pointer;
+    transition: 500ms;
+}
+
+.navbar ul li:hover{
+    transform: translateY(-1.5px);
+    
+    color: #71634E;
+}
+.divLogo {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    z-index: 10;
+}
+.divLogo img{
+    width: 18%;
+    margin-right: 4%;
+}
+.divLogo p{
+    font-weight: 800;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+    gap: 5%;
+    font-size: 20px;
+}
+.user p:hover{
+    transition: 500ms;
+    cursor: pointer;
+}
+.user p:hover{
+    transform: translateY(-1.5px);
+    color: #71634E;
+}
+
+.user i{
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.user i:hover{
+    color: #71634E;
+    transform: scale(1.1)
+}
+
+
+.contentInitial{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    gap:10%;
+
+}
+
+.maintext{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    padding: 10% 0% 10% 12%;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.maintext h1{
+    font-size: 3rem;
+    font-family: 'Manrope';
+}
+
+.maintext span{
+    color: #71634E;
+    font-family: 'Manrope';
+    font-weight: 600;
+}
+
+.maintext button{
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 5%;
+    color: #8B601F;
+    background-color: transparent;
+    border: 2px #8B601F  solid;
+    border-radius: 10px;
+    margin-top: 5%;
+    transition: 500ms;
+    cursor: pointer;
+ }
+
+ .maintext button:hover{
+    color: white;
+    background-color: #8B601F ;
+    border: 2px #8B601F  solid;
+    transform: translate(15px, 0)
+ }
+
+.imgInitial{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5%;
+}
+
+.imgInitial img{
+    width: 100%;
+    border-radius: 150px 0 150px 0;
+    filter: drop-shadow(1px 1px 7px #71634E);
+}
+
+/* divJustificativa */
+.divJustificativa{
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.divImgJustificativa{
+    width: 50%;
+    height: 100%;
+    border-right: 1px  #8B601F solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.divImgJustificativa img{
+    width: 70%;
+    border-radius: 50px;
+
+}
+.divContentJustificativa{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.divContentJustificativa h1{
+    font-size: 2.8rem;
+    font-family: 'Manrope';
+}
+
+.divContentJustificativa p{
+    font-size: 1.4rem;
+    font-family: 'Manrope';
+    padding: 0 10% 0 15%;
+}
+/* divcards */
+
+.divCards{
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+    margin-bottom: 10%;
+}
+
+.card{
+    width: 20%;
+    height: 55%;
+    border-radius: 40px;
+    padding: 1% 2% 0 2%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    /* border: 0.5px  gray solid; */
+    box-shadow:-1px 8px 10px 2px  #d1cfcf;  
+}
+.card h2{
+    margin: 0;
+    padding: 0;
+}
+
+.card i{
+    color: #9F8153;
+    font-size:1.8rem;
+    margin-bottom: 8%;
+    width: 100%;
+    height: 10%;
+}
+
+/* divImgContratar */
+
+.imgContratar{
+    width: 98.7vw;
+    height: 50vh;
+    background-color: rebeccapurple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+.h2Contratar{
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.h4Contratar{
+    font-size: 1.5rem;
+    margin-bottom: 3%;
+}
+
+.imgContratar button{
+    padding: 1% 2% 1% 2%;
+    background-color: #012540;
+    border-style: none;
+    font-size: 1.5rem;
+    border-radius: 25px;
+    color: white;
+}
+
+/*  */
+.divInfo{
+    display: flex;
+    width:auto;
+    height: 60vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.h4Info{
+    overflow-wrap:break-word;
+    width: 50%;
+    font-weight: 600;
+}
+/* divAchamosQueVaiGostar */
+
+.divYouLike{
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentYouLike{
+    width: 85%;
+    height: 100%;
+    border: 1px gray solid;  
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 10%;
+}
+
+.divContentItemsYouLike{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;  
+    margin-top: 2%;
+}
+.divContentItemsYouLike h2{
+    font-size: 2rem;
+    padding-left: 5%;
+    padding-right: 2%;
+}
+
+.itemYouLike{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4%;
+    width: 25%;
+}
+
+.itemYouLike span{
+    font-size: 1rem;
+    font-weight: 800;
+    
+}
+
+.itemYouLike i{
+    font-size: 1.8rem;
+}
+
+.divCalculators{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:80%;
+    gap: 3%;
+
+}
+
+.divCalcItem{
+    width: 42%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color:#F8F9FD ;
+    border-radius: 30px;
+}
+.divCalcItem h1{
+    margin: 0;
+}
+.divCalcItem p{
+    font-weight: 500;
+    text-align: center;
+    margin-bottom:15%;
+}
+
+.divCalcItem button{
+    font-size: 1.2rem;
+    border-style: none;
+    padding: 3% 5%;
+    background-color: #9F8153;
+    border-radius: 8px;
+    color: white;
+
+}
+
+.divTestemunhos{
+    width: 98.7vw;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divTestemunhosContent{
+    display:flex;
+    width: 90%;
+    background-color: red;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.titleSubtitle{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 20%;
+}
+
+.titleSubtitle h1{
+    margin: 0;
+}
+
+.divAvaliacoes{
+    width: 38%;
+    height: 50%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+    
+
+}
+
+.divAvaliacoesIdentidade{
+    height: 30%;
+    width: 38%;
+}
