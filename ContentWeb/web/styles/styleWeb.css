@@ -228,7 +228,7 @@ a{
 }
 
 .divContentJustificativa p{
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-family: 'Manrope';
     padding: 0 10% 0 15%;
 }
@@ -510,6 +510,7 @@ a{
     display: flex;
     flex-direction: column;
     color: white;
+    padding: 0 6%;
 }
 
 .divsFotos{
@@ -581,7 +582,7 @@ footer{
     width: 100%;
     gap: 5%;
     font-size: 1.3rem;
-    color: #3734A9;
+    color: green;
 }
 
 .divIconsFooter i{
