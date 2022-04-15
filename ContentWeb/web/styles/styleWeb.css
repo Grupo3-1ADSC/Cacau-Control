@@ -593,6 +593,20 @@ footer{
     color: #1b14e0;
 }
 
+.fa-twitter{
+    color: #00acee;
+}
+.fa-facebook{
+    color: #3b5998
+}
+
+.fa-linkedin{
+    color: #0e76a8
+}
+.fa-whatsapp{
+    color: #00bb2d;
+}
+
 .divCopy{
     display: flex;
     justify-content: flex-end;
