@@ -1,0 +1,431 @@
+/* new layout side bar */
+
+.divUser{
+    height: 25%;
+    width: 100%;
+    color: #a58d13;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.divUser h3{
+    margin: 0;
+}
+.divUser img{
+    width: 40%;
+    margin-top: 5%;
+}
+
+.divItems{
+    height:50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2%;
+    
+}
+.divItemSide{
+    width:100%;
+    height: 25%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    gap: 10%;
+    border-radius: 15px;
+    width: 100%;
+    margin-left: 5%;
+    background-color:rgb(224, 224, 224);
+}
+.divItemSide i{
+   font-size: 1.5rem;
+   margin-bottom: 2%;
+   color: #a58d13;
+   margin-left: 10%;
+}
+.divItemSide a{
+    color: #a58d13;
+    font-size: 1rem;
+    font-weight: 800;
+    
+}
+
+.divItemSide a:nth-child(2){
+    margin-right:50% ;
+}
+
+.sideBActive{
+    background-color: #a58d13;
+}
+
+.sideBActive i{
+    color: white;
+}
+
+.sideBActive a{
+    color: white;
+}
+
+.configs{
+    height: 25%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.divitemsConfigs{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8%;
+    margin-left: 15%;
+    margin-bottom: 10%;
+}
+.divItemConf{
+    background-color:rgb(208, 208, 208);
+    width: 20%;
+    height: 170%;
+    border-radius: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.divitemsConfigs i{
+    color: #201b04;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+/* divNavCenter */
+
+.divnavDash{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3%;
+}
+.divInfoIndex{
+    width:50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-evenly ;
+}
+
+.divItemInfo{
+    width:20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7%;
+}
+
+.divItemInfo .normal{
+    background-color:#2DB5B2 ;
+}
+
+.divItemInfo .alerta{
+    background-color:#DBBA01 ;
+}
+
+.divItemInfo .critico{
+    background-color:#F47780 ;
+}
+
+.divItemInfo h4{
+    font-weight: 400;
+    color: rgb(144, 138, 138);
+}
+
+.itemInfoColor{
+    width: 15%;
+    height: 25%;
+    background-color: #201b04;
+    border-radius: 920px;
+}
+
+.divNavtime{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+.divHora{
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.divData{
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+/* div da esquerda dashBoards */
+.contentDashAll{
+    height:84.4vh;
+    width:100%;
+    display: flex;
+}
+
+.divLeftDash{
+    height: 100%;
+    width: 62%;
+    margin-left: 3%;
+    background-color:rgb(224, 224, 224) ;
+    border-radius: 15px;
+}
+
+.divSensors{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1%;
+}
+
+.divSensors:nth-child(1){
+    margin-left: 2%;
+}
+
+.itemSensor{
+    height:50%;
+    width: 10%;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #6d601d;
+    margin-top: 2%;
+    transition: 500ms;
+    font-weight: 700;
+}
+
+.itemSensorActive{
+    color: #a58d13;
+    background: #EAF3F4;
+    box-shadow: 4px 4px 10px rgba(0, 118, 135, 0.1), 0px 1px 20px rgba(0, 118, 135, 0.1);
+}
+
+.itemSensor:hover{
+    color: #a58d13;
+    background: #EAF3F4;
+    box-shadow: 4px 4px 10px rgba(0, 118, 135, 0.1), 0px 1px 20px rgba(0, 118, 135, 0.1);
+}
+
+/* controladores */
+
+.divControllers{
+    width: 100%;
+    height: 50%;
+    display: flex;
+}
+
+.divcontrollerMinMax{
+    width: 50%;
+    height: 100%;
+    background-color: #201b04;
+}
+
+.painelController{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.painelController h2{
+    color: #767a7a;
+}
+.divPainelItem{
+    width: 60%;
+    height: 40%;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+    box-shadow: 4px 4px 10px rgba(0, 118, 135, 0.1), 0px 1px 20px rgba(0, 118, 135, 0.1);
+}
+.divPainelItem span{
+    font-size: 0.9rem;
+}
+.divPainelItem.temp h1 {
+    color: #F47780 ;
+}
+.divPainelItem.temp i {
+    color: #F47780 ;
+}
+.divPainelItem.umi h1 {
+    color: #2DB5B2 ;
+}
+.divPainelItem.umi i {
+    color: #2DB5B2 ;
+}
+.divPainelItem i{
+    font-size: 1.4rem;
+}
+
+.divGraficos{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+}
+
+.divItemGrafico{
+    width: 48%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.divItemGrafico canvas{
+    background-color: #EAF3F4;
+    border-radius: 5px;
+    box-shadow: 4px 4px 10px rgba(0, 118, 135, 0.1), 0px 1px 20px rgba(0, 118, 135, 0.1);
+}
+
+/* painel lado direito */
+
+.divRightDash{
+    width:35%;
+    height: 100%;
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items:center; 
+    justify-content:space-between ;
+    background-color:rgb(224, 224, 224) ;
+}
+
+.divlabelAlarms{
+    width: 100%;
+    height: 5%;
+    margin-top: 3%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 2%;
+    
+}
+
+.divCardAlarms{
+    height: 90%;
+    width: 95%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    flex-wrap: wrap;
+    box-shadow: 4px 4px 10px rgba(0, 118, 135, 0.1), 0px 1px 20px rgba(0, 118, 135, 0.1);
+}
+
+
+.divCardAlarms::-webkit-scrollbar{
+    width: 5px;    
+    height: 5px;
+}
+  
+  .divCardAlarms::-webkit-scrollbar-thumb {
+    border-radius: 20px;       
+    border: 3px solid #767a7a;  
+  }
+
+.divlabelAlarms h4{
+    margin-left: 5%;
+    color: #767a7a;
+}
+/* card */
+.itemCardAlarm{
+    width: 40%;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top:5%;
+    background-color: white;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.itemCardAlarm h2{
+    font-size: 1rem;
+    color: #F47780;
+    margin: 0;
+    margin-top:10%;
+}
+.itemCardAlarm i{
+    font-size: 1.4rem;
+    color: #F47780;
+}
+.divInfoAlarm{
+    width: 100%;
+    height: 25%;
+    background-color: #F47780;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    font-size: 0.9rem;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+/*  */
+/* normal */
+/* card */
+
+.itemCardAlarm.normal h2{
+    color: #2DB5B2;
+}
+.itemCardAlarm.normal i{
+    color: #2DB5B2;
+}
+.divInfoAlarm.normal {
+    background-color: #2DB5B2;
+}
+/* alerta */
+.itemCardAlarm.alerta h2{
+    color: #DBBA01;
+}
+.itemCardAlarm.alerta i{
+    color: #DBBA01;
+}
+.divInfoAlarm.alerta {
+    background-color: #DBBA01;
+}
+/* critico */
+
+.itemCardAlarm.critico h2{
+    color: #F47780;
+}
+.itemCardAlarm.critico i{
+    color: #F47780;
+}
+.divInfoAlarm.critico {
+    background-color: #F47780;
+}

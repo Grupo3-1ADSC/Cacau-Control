@@ -3,31 +3,28 @@ body {
     padding: 0;
     padding: 0;
     font-family: 'Nunito', sans-serif;
-    width: 98vw;
-    
+    width: 100vw;
 }
 
 a{
     text-decoration: none;
 }
 
-
-
 .contentAll {
-    margin-left: 10%;
+    margin-left: 15%;
+    
 }
 
 .sideBar {
     display: flex;
     position: fixed;
-    border-right: 1px solid #D0D1D2;
     left: 0;
     top: 0;
     bottom: 0;
     justify-content: flex-start;
     align-items: center;
     height: 100vh;
-    width: 10%;
+    width: 15%;
     flex-direction: column;
     background-color: white;
 }
@@ -247,7 +244,7 @@ nav {
 }
 
 .divGrafico {
-    width: 100%;
+    width: 90%;
     height: 70vh;
     display: flex;
     justify-content: center;
@@ -256,7 +253,7 @@ nav {
 }
 
 .painel {
-    width: 65%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -272,7 +269,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 90%;
     margin-top: -2%;
     height:30vh;
 }
