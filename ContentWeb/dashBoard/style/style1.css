@@ -175,7 +175,7 @@
 }
 /* div da esquerda dashBoards */
 .contentDashAll{
-    height:84.4vh;
+    height:84vh;
     width:100%;
     display: flex;
 }
