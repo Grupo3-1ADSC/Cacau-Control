@@ -1,7 +1,9 @@
-// grafico temperatura
+// grafico umidade
 
-var xValues = ['01:00',
+var xValues = ['00:00',
+    '01:00',
     '02:00',
+    '03:00',
     '04:00',
     '05:00',
     '06:00',
@@ -11,6 +13,7 @@ var xValues = ['01:00',
     '10:00',
     '11:00',
     '12:00',
+    '13:00',
     '14:00',
     '15:00',
     '16:00',
@@ -21,7 +24,6 @@ var xValues = ['01:00',
     '21:00',
     '22:00',
     '23:00',
-    '00:00',
 ];
 
 new Chart("myChartUmidade", {
@@ -30,7 +32,7 @@ new Chart("myChartUmidade", {
         labels: xValues,
         datasets: [{
             label: '%',
-            data: [20, 22, 22, 21, 23, 22, 23, 24, 21, 21, 23.5, 24, 25, 26, 26, 27, 24, 24, 23, 20, 23, 26, 28],
+            data: [80, 75, 72, 71, 65, 64, 64, 51, 50, 63, 60, 50, 38, 32, 40, 44.5, 47, 44, 50, 60, 63, 70, 73.5, 70],
             borderColor: "#1EC9E0",
             fill: false
         }]
@@ -45,8 +47,8 @@ new Chart("myChartUmidade", {
         },
         scales: {
             y: {
-                min: 1,
-                max: 35
+                min: 0,
+                max: 100
             }
         }
     }
