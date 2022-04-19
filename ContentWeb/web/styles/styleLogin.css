@@ -159,7 +159,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-left: 30px;
+  padding: 0px 30px;
 }
 
 
