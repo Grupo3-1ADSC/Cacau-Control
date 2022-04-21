@@ -6,11 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cacau Control | Login</title>
+    <title>Cacau Control | Cadastro</title>
 
-    <script src="./js/funcoes.js"></script>
-
+    <script src="../js/funcoes.js"></script>
+    <link rel="stylesheet" href="../cssNativoProfessor/style.css">
+    <!--  -->
     <link rel="icon" href="./assets/icon/favicon.ico">
+    <link rel="icon" href="imgs/logo.png">
     <link rel="stylesheet" href="../web/styles/styleLogin.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -22,8 +24,6 @@
 
     <!--Header-->
 
-    
-
     <div class="banner">
         <div class="alerta_erro">
             <div class="card_erro" id="cardErro">
@@ -31,19 +31,25 @@
             </div>
         </div>
         <div class="container">
+           
             <div class="welcome">
-                <h2>Bem vindo!</h2>
-                <h6>Realize seu cadastro para ter acesso ao dashboard</h6><br>
-                <button class="btn"><a href="#cadastro"></a>Cadastre-se</button>
-                <button class="btn"><a href="#index"></a>Voltar ao menu</button>
+                <h3>Já tem cadastro ?</h3>
+                <h6>Realize seu Login para ter acesso ao dashboard</h6><br>
+                <a href="login.html"><button class="btn">login</button></a>
+                <a href="../index.html"><button class="btn">Voltar ao menu</button></a>
             </div>
+            
             <div class="card">
                 
-                <h2>Faça seu login!</h2>
+                <h2>Faça seu cadastro!</h2>
                 
         
                 <div class="formulario">
+                    <span class="tipo_campo"></span>
+                    <input id="nome_input" type="text" placeholder="Nome">
 
+                    <span class="tipo_campo"></span>
+                    <input id="cpf_input" type="text" placeholder="CPF">
 
                     <span class="tipo_campo"></span>
                     <input id="email_input" type="text" placeholder="E-mail">
@@ -51,13 +57,16 @@
                     <span class="tipo_campo"></span>
                     <input id="senha_input" type="password" placeholder="Senha">
 
-                    <button class="btn" onclick="entrar()">Entrar</button>
+                    <span class="tipo_campo"></span>
+                    <input id="confirmacao_senha_input" type="password" placeholder="confirme sua senha">
+
+                    <button class="btn" onclick="cadastrar()">Cadastrar</button>
 
 
                 </div>
 
                 <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
+                    <img src="../assets/circle-loading.gif" id="loading-gif">
                 </div>
 
                 <div id="div_erros_login">
@@ -74,24 +83,27 @@
         </div>
     </div>
     <!--footer fim-->
-
 </body>
 
 </html>
 
+
 <script>
-
-
-    function entrar() {
+    function cadastrar() {
         aguardar();
 
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome_input.value;
+        var cpfVar = cpf_input.value; 
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
+        var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
-        if (emailVar == "" || senhaVar == "") {
+        if (nomeVar == "" || cpfVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Preencha todos os campos para prosseguir!";
+
             finalizarAguardar();
             return false;
         }
@@ -109,51 +121,47 @@
             setInterval(sumirMensagem, 5000)
         }
 
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
+        if (senhaVar != confirmacaoSenhaVar) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "As senhas inseridas devem ser iguais para prosseguir!";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
 
-        fetch("/usuarios/autenticar", {
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                cpfServer:cpfVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar
             })
         }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
+
+            console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
-
-                });
-
+                cardErro.style.display = "block"
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
+                window.location = "login.html";
+                limparFormulario();
+                finalizarAguardar();
             } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
+                throw ("Houve um erro ao tentar realizar o cadastro!");
             }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
 
         return false;
     }

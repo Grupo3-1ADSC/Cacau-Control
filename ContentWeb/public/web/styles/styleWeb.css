@@ -103,7 +103,9 @@ a{
     gap: 5%;
     font-size: 20px;
 }
-
+.user a{
+    color: black;
+}
 .user p:hover{
     transition: 500ms;
     cursor: pointer;

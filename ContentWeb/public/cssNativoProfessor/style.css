@@ -40,6 +40,11 @@ body {
 }
 
 
+.titulo {
+  color: #32b9cd;
+  width: fit-content;
+  font-weight: 500;
+}
 
 
 /* BANNER */
@@ -48,13 +53,12 @@ body {
   height: fit-content;
   padding: 40px 0;
   color: white;
-  background-image: url("../imgs/fundo.png");
+  background-image: url(".././assets/imgs/bg-jelly-fish-para_outras_pags.png");
   background-size: cover;
-  height: 600px;
 }
 
 .banner .container {
-
+  height: 400px;
   font-size: 36px;
   justify-content: center;
   align-items: center;
@@ -76,12 +80,49 @@ body {
   font-weight: 800;
 }
 
+/* missao visao valores */
+
+.social {
+  background-color: #e5e5e5;
+  display: flex;
+}
+
+.social .container{
+  justify-content: center;
+}
+
+.box img {
+  width: 170px;
+}
+
+.social .container .boxes {
+  display: flex;
+}
+
+.social p {
+  text-align: center;
+}
+
+.box {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.box {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 
 /* FOOTER */
 
 .footer {
-  background-color: #71634E;
+  background-color: #32b9cd;
   height: 150px;
   color: #fff;
   display: flex;
@@ -97,37 +138,18 @@ body {
 
 .banner .container .card {
   background-color: #e5e5e5;
-  height: 600px;
-  width: 65%;
+  height: fit-content;
+  width: 400px;
   display: flex;
   flex-direction: column;
-  color: #71634E;
+  color: palevioletred;
   align-items: center;
   border-radius: 4px;
 }
-.welcome {
-  background-image: url("../imgs/welcome.png");
-  background-size: cover;
-  background-color: #71634E;
-  height: 600px;
-  width: 35%;
-  float: left;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0px 30px;
-}
-
-
-
 
 .card {
   display: flex;
   justify-content: space-around;
-  height: 750px;
-  width: 450px;
 }
 
 .card h2 {
@@ -160,7 +182,7 @@ button {
   width: 230px;
   position: fixed;
   border-radius: 4px;
-  border: #71634E 3px solid;
+  border: #e6005a 3px solid;
   padding: 10px;
   margin-right: 10%;
 }
@@ -182,25 +204,12 @@ button {
 
 input {
   margin-bottom: 10px;
-  border: 2px solid #71634E;
+  border: 2px solid #32b9cd;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
 }
-.welcome .btn{
-  font-family: "Barlow", sans-serif;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 18px;
-  padding: 10px 15px;
-  color: #71634E;
-  background-color: white;
-  width: 220px;
-  align-self: center;
-  margin-top: 5px;
 
-}
 .btn {
   font-family: "Barlow", sans-serif;
   border: 0;
@@ -209,7 +218,7 @@ input {
   font-size: 18px;
   padding: 10px 15px;
   color: white;
-  background-color: #71634E;
+  background-color: #e6005a;
   width: 120px;
   align-self: center;
   margin-top: 5px;
@@ -287,7 +296,7 @@ input {
 .btn-nav {
   width: 40%;
   color: white;
-  background-color: #71634E;
+  background-color: #e6005a;
   border-radius: 5px;
   text-align: center;
   padding: 2% 5%;
@@ -296,14 +305,14 @@ input {
 .btn-nav-white {
   width: 40%;
   background-color: white;
-  border: 3px solid #71634E;
+  border: 3px solid #e6005a;
   border-radius: 5px;
   text-align: center;
   padding: 2% 5%;
 }
 
 .btn-nav-white h3 {
-  color: #71634E;
+  color: #e6005a;
   padding: 0;
   margin: 0;
 }
