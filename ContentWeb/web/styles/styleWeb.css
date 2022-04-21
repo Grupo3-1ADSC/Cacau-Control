@@ -35,7 +35,7 @@ a{
     border-radius: 0 0 1000px ; 
     background-color: #cb8c17;
     opacity:30%; 
-    z-index: 1;
+    z-index: 1;  /* Envia para trás */
     filter:blur(4px);
     -o-filter:blur(15px);
     -ms-filter:blur(15px);

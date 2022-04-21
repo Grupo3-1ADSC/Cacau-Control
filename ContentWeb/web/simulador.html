@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Sensores | Cacau Control</title>
+    <link rel="stylesheet" href="styles/styleSimulador.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div class="divBlur"></div>
+    <div class="container">
+    <div class="card">
+        <div id="header">
+            <h2>Seja bem vindo,</h2>
+            <h3>ao simulador de sensores da Cacau Control!!</h3><br>
+            <span>Atravês dele você terá noção de quantos sensores precisará e o custo da instalação por eles</span>
+        </div>
+        <input id="input_qnt_hectares" placeholder="Digite a quantidade de Hectares">
+        <button onclick="calcular()">Simular</button>
+        <div id="resposta"></div>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+    var hectares = 0
+
+    function calcular() {
+    hectares = input_qnt_hectares.value
+    metragem_total = 10000 * hectares
+    quantidade_hardware = metragem_total / 100
+    unidade_hardware = 200
+    custo_total = quantidade_hardware * unidade_hardware
+        resposta.innerHTML = 
+       `Você precisará de ${quantidade_hardware} hardwares caso queira deixa-los a cada 100m². <br>
+        Cada harware custa 200 reais, incluso a instalação. Nesse sentido você gastará ${custo_total.toLocaleString('pt-br', {style: 'currency', currency:'BRL'})}.`
+
+        resposta.style.border = "2px solid #8B601F"
+        resposta.style.padding = "8px"
+        resposta.style.margin =  "10px auto"
+    }
+</script>
