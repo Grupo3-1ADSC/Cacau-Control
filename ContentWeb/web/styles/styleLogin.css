@@ -40,11 +40,6 @@ body {
 }
 
 
-.titulo {
-  color: #32b9cd;
-  width: fit-content;
-  font-weight: 500;
-}
 
 
 /* BANNER */
@@ -81,43 +76,6 @@ body {
   font-weight: 800;
 }
 
-/* missao visao valores */
-
-.social {
-  background-color: #e5e5e5;
-  display: flex;
-}
-
-.social .container{
-  justify-content: center;
-}
-
-.box img {
-  width: 170px;
-}
-
-.social .container .boxes {
-  display: flex;
-}
-
-.social p {
-  text-align: center;
-}
-
-.box {
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-.box {
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 
 /* FOOTER */
