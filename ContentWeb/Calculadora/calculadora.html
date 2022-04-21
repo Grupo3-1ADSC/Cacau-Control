@@ -12,7 +12,9 @@
 <body>
 
 
-  <div id="fundo"></div>
+  <div id="fundo">
+    <div class="divBlur"></div>
+  </div>
   <div style="margin-top: -5%;">
     <div class="div_1"> <br> <br>
     <b> Calcule seu investimento! </b>
@@ -35,9 +37,10 @@
     </div>
 <br>
 <div id="div1" class="result"></div> <br>
+<div class="botoes">
     <button class="botao1" ; onclick="calcular()"> Calcular Valores
-    </button>
-    <button class="botao2" onclick="Recomeço()"> Nova Análise </button>
+    </button> <br>
+    <button class="botao2" onclick="Recomeço()"> Nova Análise </button> </div>
     <br>
     <br>
     <div id=div2 ></div>
@@ -66,14 +69,17 @@
         Sendo que sua receita deveria ser de R$${LucroIdeal} <br>
         Ou seja você perde ${valor_perdido_porcentagem}%`;
     fundo.style.height = "120vh";
-    div1.style.backgroundColor = "#fffdd09c";
+    div1.style.backgroundColor = "transparent";
     div1.style.width = "45%";
     div1.style.borderStyle = "solid";
     div1.style.borderWidth = "3px";
-    div1.style.borderColor = "peru";
+    div1.style.borderColor = "#8B601F";
     div1.style.borderRadius = "5px";
     div1.style.display = "block";
     div1.style.paddingStart = "10px";
+    div1.style.fontFamily = "Rajdhani";
+    div1.style.fontSize = "18px";
+    div1.style.fontWeight="300";
 
 
   }

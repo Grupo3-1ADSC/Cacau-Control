@@ -1,12 +1,12 @@
 body {
-    background-image: url(Design_sem_nome.png);
     background-size: cover;
     padding: 0;
     margin: 0;
+    font-family: 'Rajdhani', 'Manrope', sans-serif;
   }
 
   #fundo {
-    background-color: #00000054;
+    background-color: white;
     position: absolute;
     width: 100vw;
     height: 100vh;
@@ -14,8 +14,25 @@ body {
     
 }
 
+.divBlur{
+    position: absolute;
+    width: 60vw;
+    height: 140vh; 
+    left: 0;
+    top:-10%;
+    border-radius: 0 0 1000px ; 
+    background-color: #cb8c17;
+    opacity:30%; 
+    z-index: 1;
+    filter:blur(4px);
+    -o-filter:blur(15px);
+    -ms-filter:blur(15px);
+    -moz-filter:blur(15px);
+    -webkit-filter:blur(15px);  
+}
+
 .div_1{
-    color:#fffdd0e1; 
+    color:#8B601F; 
     text-align: center;
     margin-top: 50px;
     font-size: 40px;
@@ -30,23 +47,55 @@ body {
     color: white;
     
 
+}
+
+.botoes{
+    display: flex;
+    justify-content: center;
+    margin-top: -500px;
+    
     
 }
 
+
 .botao1{
-    margin-left: 44%;
-    font-size: 18px;
-    margin-bottom: 1%;
-    background-color: peru;
-    border-radius: 20px;
+    font-size: 26px;
     font-weight: 600;
+    background-color: transparent;
+    border: 2px #8B601F  solid;
+    border-radius: 10px;
+    margin-top: 40%;
+    transition: 500ms;
+    color: #8B601F;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.botao1:hover{
+    color: white;
+    background-color: #8B601F ;
+    border: 2px #8B601F  solid;
+    
 }
 .botao2{
-    font-size: 18px;
-    margin-left: 45%;
-    background-color: peru; 
-    border-radius: 20px;
+    font-size: 26px;
     font-weight: 600;
+    background-color: transparent;
+    border: 2px #8B601F  solid;
+    border-radius: 10px;
+    margin-top: 40%;
+    transition: 500ms;
+    color: #8B601F;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.botao2:hover{
+    color: white;
+    background-color: #8B601F ;
+    border: 2px #8B601F  solid;
 }
 
 .div2{
@@ -61,27 +110,30 @@ body {
 }
 
 .input1{
-    background-color: #fffdd09c;
+    background-color: transparent;
     border-radius: 6px;
     width: 200px;
     height: 30px;
     outline: 0;
+    border: #8B601F 3px solid;
 }
 
 .input2{
-    background-color: #fffdd09c;
+    background-color: transparent;
     border-radius: 6px;
     width: 200px;
     height: 30px;
     outline: 0;
+    border: #8B601F 3px solid;
 
 }
  .input3{
-    background-color: #fffdd09c;
+    background-color: transparent;
     border-radius: 6px;
     width: 200px;
     height: 30px;
     outline: 0;
+    border: #8B601F 3px solid;
  }
 
  
