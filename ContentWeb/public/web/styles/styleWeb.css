@@ -418,6 +418,10 @@ a{
     cursor: pointer;
 }
 
+.divCalcItem button a{
+    color: white;
+}
+
 .divCalcItem button:hover{
     background-color: #74654e;
 }

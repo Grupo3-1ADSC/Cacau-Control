@@ -48,10 +48,11 @@
 
 
                     <span class="tipo_campo"></span>
-                    <input id="email_input" type="text" placeholder="E-mail">
+                    <input maxlength="50" id="email_input" type="text" placeholder="E-mail">
+                    <span class="alertaInput" id="alertaInput"></span>
 
                     <span class="tipo_campo"></span>
-                    <input id="senha_input" type="password" placeholder="Senha">
+                    <input maxlength="30" id="senha_input" type="password" placeholder="Senha">
 
                     <button class="btn" onclick="entrar()">Entrar</button>
 
@@ -82,7 +83,16 @@
 </html>
 
 <script>
-
+    function masks(){
+        var cpfVar = cpf_input.value; 
+        if(cpfVar.length == 3){
+            cpf_input.value = cpfVar+"."
+        }else if(cpfVar.length == 7){
+            cpf_input.value = cpfVar+"."
+        }else if(cpfVar.length ==11){
+            cpf_input.value = cpfVar+"-"
+        }
+    }
 
     function entrar() {
         aguardar();
@@ -104,10 +114,17 @@
         if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
+            email_input.style.border="red 2px solid"
+
+            alertaInput.innerHTML=`Email inválido`
+            alertaInput.style.display="block"
+            alertaInput.style.color="red"
             finalizarAguardar();
             return false;
         }
         else {
+            email_input.style.border="green 2px solid"
+            alertaInput.innerHTML=``
             setInterval(sumirMensagem, 5000)
         }
 
@@ -162,6 +179,9 @@
 
     function sumirMensagem() {
         cardErro.style.display = "none"
+        alertaInput.style.display="none"
+        alertaInput1.style.display="none"
+        alertaInput2.style.display="none"
     }
 
 </script>

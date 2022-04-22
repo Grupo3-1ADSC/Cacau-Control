@@ -189,7 +189,23 @@ input {
   padding: 10px;
   text-align: center;
   border-radius: 10px;
+
 }
+
+input:focus {
+  outline: none;
+  border: 2px solid #a97528;
+}
+
+.alertaInput{
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  display: none;
+}
+
+
+
 .welcome .btn{
   font-family: "Barlow", sans-serif;
   border: 0;
