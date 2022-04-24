@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cacau Control | Cadastro</title>
+
+    <script src="../js/funcoes.js"></script>
+    <link rel="stylesheet" href="../cssNativoProfessor/style.css">
+    <!--  -->
+    <link rel="icon" href="./assets/icon/favicon.ico">
+    <link rel="icon" href="imgs/logo.png">
+    <link rel="stylesheet" href="../web/styles/styleLogin.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!--Header-->
+
+    <div class="banner">
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
+        <div class="container">
+           
+            <div class="welcome">
+                <h3>Já tem cadastro ?</h3>
+                <h6>Realize seu Login para ter acesso ao dashboard</h6><br>
+                <a href="login.html"><button class="btn">login</button></a>
+                <a href="../index.html"><button class="btn">Voltar ao menu</button></a>
+            </div>
+            
+            <div class="card">
+                
+                <h2>Faça seu cadastro!</h2>
+                
+        
+                <div class="formulario">
+                    <span class="tipo_campo"></span>
+                    <input maxlength="50" id="nome_input" type="text" placeholder="Nome">
+
+                    <span class="tipo_campo"></span>
+                    <input onkeypress="masks()" maxlength="14" id="cpf_input" type="text" placeholder="CPF">
+                    <span class="alertaInput" id="alertaInput1"></span>
+
+                    <span class="tipo_campo"></span>
+                    <input maxlength="50" id="email_input" type="text" placeholder="E-mail">
+                    <span class="alertaInput" id="alertaInput"></span>
+
+                    <span class="tipo_campo"></span>
+                    <input maxlength="30" id="senha_input" type="password" placeholder="Senha">
+
+                    <span class="tipo_campo"></span>
+                    <input maxlength="30" id="confirmacao_senha_input" type="password" placeholder="confirme sua senha">
+                    <span class="alertaInput" id="alertaInput2"></span>
+
+                    <button  class="btn" onclick="cadastrar()">Cadastrar</button>
+
+
+                </div>
+
+                <div id="div_aguardar" class="loading-div">
+                    <img src="../assets/circle-loading.gif" id="loading-gif">
+                </div>
+
+                <div id="div_erros_login">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer inicio-->
+    <div class="footer">
+        <div class="container">
+            <h4>Feito com amor por um aluno &hearts;SPTech &copy; 2022</h4>
+        </div>
+    </div>
+    <!--footer fim-->
+</body>
+
+</html>
+
+
+<script>
+
+    function masks(){
+        var cpfVar = cpf_input.value; 
+        if(cpfVar.length == 3){
+            cpf_input.value = cpfVar+"."
+        }else if(cpfVar.length == 7){
+            cpf_input.value = cpfVar+"."
+        }else if(cpfVar.length ==11){
+            cpf_input.value = cpfVar+"-"
+        }
+    }
+
+    function cadastrar() {
+        aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome_input.value;
+        var cpfVar = cpf_input.value; 
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+        var confirmacaoSenhaVar = confirmacao_senha_input.value;
+        
+
+
+        if (nomeVar == "" || cpfVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Preencha todos os campos para prosseguir!";
+
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if(cpfVar.length<13 ){
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Preencha completamente seu CPF ";
+            cpf_input.style.border="red 2px solid"
+
+            alertaInput1.innerHTML=`CPF incompleto`
+            alertaInput1.style.display="block"
+            alertaInput1.style.color="red"
+            finalizarAguardar();
+            return false;
+        }else{
+            cpf_input.style.border="green 2px solid"
+            alertaInput1.innerHTML=``
+            setInterval(sumirMensagem, 5000)
+        }
+
+
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
+            email_input.style.border="red 2px solid"
+
+            alertaInput.innerHTML=`Email inválido`
+            alertaInput.style.display="block"
+            alertaInput.style.color="red"
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            email_input.style.border="green 2px solid"
+            alertaInput.innerHTML=``
+            setInterval(sumirMensagem, 5000)
+        }
+
+        if (senhaVar != confirmacaoSenhaVar) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "As senhas inseridas devem ser iguais para prosseguir!";
+
+            confirmacao_senha_input.style.border="red 2px solid"
+
+            alertaInput2.innerHTML=`Senha diferentes`
+            alertaInput2.style.display="block"
+            alertaInput2.style.color="red"
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            confirmacao_senha_input.style.border="green 2px solid"
+
+            alertaInput2.innerHTML=``
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                cpfServer:cpfVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block"
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
+                window.location = "login.html";
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+        alertaInput.style.display="none"
+        alertaInput1.style.display="none"
+        alertaInput2.style.display="none"
+    }
+
+</script>
