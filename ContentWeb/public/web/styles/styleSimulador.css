@@ -84,4 +84,7 @@ span {
     font-weight: 500;
 }
 
-
+.divHeader{
+    width: 100vw;
+    height: 2vh;
+}

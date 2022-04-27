@@ -8,9 +8,9 @@ body {
   #fundo {
     background-color: white;
     position: absolute;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
+    width: 97.8vw;
+    height: 97.8vh;
+    z-index: -2;
     
 }
 
@@ -23,12 +23,12 @@ body {
     border-radius: 0 0 1000px ; 
     background-color: #cb8c17;
     opacity:30%; 
-    z-index: 1;
     filter:blur(4px);
     -o-filter:blur(15px);
     -ms-filter:blur(15px);
     -moz-filter:blur(15px);
     -webkit-filter:blur(15px);  
+    z-index: -1;
 }
 
 .div_1{
@@ -53,6 +53,7 @@ body {
     display: flex;
     justify-content: center;
     margin-top: -500px;
+    z-index: 0;
     
     
 }
@@ -107,8 +108,14 @@ body {
  
 .result{
     margin: 0 auto;
+    color: black;
+    font-weight: 900;
 }
-
+#div1{
+    color: black;
+    font-weight: 900;
+    font-size: 1.1rem;
+}
 .input1{
     background-color: transparent;
     border-radius: 6px;
@@ -136,5 +143,15 @@ body {
     border: #8B601F 3px solid;
  }
 
- 
+ .divReturn{
+     width: 7%;
+     margin-top: 3%;
+     margin-left: 8%;
+     height: 5%;
+     cursor: pointer;
+     position: absolute;
+     color: #8B601F;
+     font-size: 2rem;
+ }
+
  

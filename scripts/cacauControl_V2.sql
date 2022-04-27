@@ -80,26 +80,31 @@ Insert into Sensor values
 (null,'2035874985', '17º 14 76 S', '32º 74 02 W', '25°', '22°', '60%', '45%', '4');
 
 
-
+drop table registro;
 create table Registro(
 idRegistro int primary key  auto_increment,
-Temperatura varchar(50),
-Umidade varchar (50),
+Temperatura_°C double,
+Umidade_UR double,
 DataHora datetime,
-Alerta char(15),
-check( Alerta='Critico' or Alerta= 'Estavel'),
+Alerta_Temperatura char(15),
+check( Alerta_Temperatura='Critico' or Alerta_Temperatura= 'Normal' or Alerta_Temperatura='alerta'),
+Alerta_Umidade char(15),
+check(Alerta_Umidade ='Critico' or Alerta_Umidade= 'Normal' or Alerta_Umidade='alerta'),
 FkSensor int,
 foreign key (FkSensor) references Sensor(idSensor)
 );
 
+
+
+
 Insert into Registro values 
-(null,'23°', '55%', '2022-04-16','Estavel', '1'),
+(null,'23', '70', '2022-04-16','alerta','critico', '1'),
 
-(null,'21°', '47%', '2022-04-16','Estavel', '2'),
+(null,'21', '75', '2022-04-16','critico','normal', '2'),
 
-(null,'24°', '39%', '2022-04-16','Critico', '3'),
+(null,'24', '81', '2022-04-16','normal','alerta', '3'),
 
-(null,'23°', '53%', '2022-04-16','Estavel', '4');
+(null,'23', '84', '2022-04-16','alerta','critico', '4');
 
 select* from Registro;
 

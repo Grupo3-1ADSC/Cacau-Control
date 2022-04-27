@@ -13,11 +13,19 @@
 <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Rajdhani:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
+
+    <!-- font Awesome -->
+    <script src="https://kit.fontawesome.com/0de1e0c120.js" crossorigin="anonymous"></script>
+    <!--  -->
 </head>
 
 <body>
 
-
+  <a href="../index.html">
+    <div class="divReturn">
+      <i class="fa fa-solid fa-arrow-left"></i>
+    </div>
+    </a>
   <div id="fundo">
     <div class="divBlur"></div>
   </div>
@@ -44,6 +52,7 @@
 <br>
 <div id="div1" class="result"></div> <br>
 <div class="botoes">
+
     <button class="botao1" ; onclick="calcular()"> Calcular Valores
     </button> <br>
     <button class="botao2" onclick="Recomeço()"> Nova Análise </button> </div>
@@ -70,10 +79,10 @@
     var LucroReal = ColheitaReal * ValorPorKg
     var valor_vendido_porcentagem = LucroReal * 100 / LucroIdeal
 
-    div1.innerHTML = `Você colhe ${Colheita} KG, mas consegue vender apenas ${valor_vendido_porcentagem}% de tudo que colheu <br>
+    div1.innerHTML = `Você colhe ${Colheita} KG, mas consegue vender apenas ${valor_vendido_porcentagem.toFixed(2)}% de tudo que colheu <br>
         Tendo assim uma receita de R$${LucroReal} <br> 
         Sendo que sua receita deveria ser de R$${LucroIdeal} <br>
-        Ou seja você perde ${valor_perdido_porcentagem}%`;
+        Ou seja você perde ${valor_perdido_porcentagem.toFixed(2)}%`;
     fundo.style.height = "120vh";
     div1.style.backgroundColor = "transparent";
     div1.style.width = "45%";
@@ -81,11 +90,8 @@
     div1.style.borderWidth = "3px";
     div1.style.borderColor = "#8B601F";
     div1.style.borderRadius = "5px";
-    div1.style.display = "block";
     div1.style.paddingStart = "10px";
-    div1.style.fontFamily = "Rajdhani";
-    div1.style.fontSize = "18px";
-    div1.style.fontWeight="300";
+    div1.style.color="black"
 
 
   }
