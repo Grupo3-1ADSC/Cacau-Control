@@ -62,25 +62,25 @@ idSensor int primary key auto_increment,
 NumeroSerial char(30),
 Latitude varchar(50),
 Longitude varchar(50),
-TemperaturaMaxima varchar (50),
-TemperaturaMinima varchar (50),
-UmidadeMaxima varchar (50),
-UmidadeMinima varchar (50),
+TemperaturaMaxima_°C double,
+TemperaturaMinima_°C double,
+UmidadeMaxima_UR  double,
+UmidadeMinima_UR  double,
 FkCliente int,
 foreign key (FkCliente) references Cliente(idCliente)
 );
 
 Insert into Sensor values
-(null,'1549862304', '16º 10 59 S', '50º 46 47 W', '25°', '22°', '60%', '45%', '3'),
+(null,'1549862304', '16º 10 59 S', '50º 46 47 W', '28', '22', '83', '71', '3'),
 
-(null,'1478953245', '18º 25 47 S', '40º 87 74 W', '26°', '21°', '55%', '43%', '2'),
+(null,'1478953245', '18º 25 47 S', '40º 87 74 W', '28', '22', '83', '71', '2'),
 
-(null,'5874632578', '25º 74 54 S', '47º 89 25 W', '23°', '25°', '60%', '40%', '1'),
+(null,'5874632578', '25º 74 54 S', '47º 89 25 W', '28', '22', '83', '71', '1'),
 
-(null,'2035874985', '17º 14 76 S', '32º 74 02 W', '25°', '22°', '60%', '45%', '4');
+(null,'2035874985', '17º 14 76 S', '32º 74 02 W', '28', '22', '83', '71', '4');
 
+select*from sensor;
 
-drop table registro;
 create table Registro(
 idRegistro int primary key  auto_increment,
 Temperatura_°C double,
