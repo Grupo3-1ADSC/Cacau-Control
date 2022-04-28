@@ -62,44 +62,49 @@ idSensor int primary key auto_increment,
 NumeroSerial char(30),
 Latitude varchar(50),
 Longitude varchar(50),
-TemperaturaMaxima varchar (50),
-TemperaturaMinima varchar (50),
-UmidadeMaxima varchar (50),
-UmidadeMinima varchar (50),
+TemperaturaMaxima_°C double,
+TemperaturaMinima_°C double,
+UmidadeMaxima_UR  double,
+UmidadeMinima_UR  double,
 FkCliente int,
 foreign key (FkCliente) references Cliente(idCliente)
 );
 
 Insert into Sensor values
-(null,'1549862304', '16º 10 59 S', '50º 46 47 W', '25°', '22°', '60%', '45%', '3'),
+(null,'1549862304', '16º 10 59 S', '50º 46 47 W', '28', '22', '83', '71', '3'),
 
-(null,'1478953245', '18º 25 47 S', '40º 87 74 W', '26°', '21°', '55%', '43%', '2'),
+(null,'1478953245', '18º 25 47 S', '40º 87 74 W', '28', '22', '83', '71', '2'),
 
-(null,'5874632578', '25º 74 54 S', '47º 89 25 W', '23°', '25°', '60%', '40%', '1'),
+(null,'5874632578', '25º 74 54 S', '47º 89 25 W', '28', '22', '83', '71', '1'),
 
-(null,'2035874985', '17º 14 76 S', '32º 74 02 W', '25°', '22°', '60%', '45%', '4');
+(null,'2035874985', '17º 14 76 S', '32º 74 02 W', '28', '22', '83', '71', '4');
 
-
+select*from sensor;
 
 create table Registro(
 idRegistro int primary key  auto_increment,
-Temperatura varchar(50),
-Umidade varchar (50),
+Temperatura_°C double,
+Umidade_UR double,
 DataHora datetime,
-Alerta char(15),
-check( Alerta='Critico' or Alerta= 'Estavel'),
+Alerta_Temperatura char(15),
+check( Alerta_Temperatura='Critico' or Alerta_Temperatura= 'Normal' or Alerta_Temperatura='alerta'),
+Alerta_Umidade char(15),
+check(Alerta_Umidade ='Critico' or Alerta_Umidade= 'Normal' or Alerta_Umidade='alerta'),
 FkSensor int,
 foreign key (FkSensor) references Sensor(idSensor)
 );
 
+
+
+
 Insert into Registro values 
-(null,'23°', '55%', '2022-04-16','Estavel', '1'),
+(null,'23', '70', '2022-04-16','alerta','critico', '1'),
 
-(null,'21°', '47%', '2022-04-16','Estavel', '2'),
+(null,'21', '75', '2022-04-16','critico','normal', '2'),
 
-(null,'24°', '39%', '2022-04-16','Critico', '3'),
+(null,'24', '81', '2022-04-16','normal','alerta', '3'),
 
-(null,'23°', '53%', '2022-04-16','Estavel', '4');
+(null,'23', '84', '2022-04-16','alerta','critico', '4');
 
 select* from Registro;
 
