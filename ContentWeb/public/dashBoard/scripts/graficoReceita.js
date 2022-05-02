@@ -10,7 +10,13 @@ new Chart("barChart", {
       label:'R$(Mil)',
       backgroundColor: barColors,
       data: yValues
-    }]
+    },
+     {
+      label:'R$(Mil)',
+      backgroundColor: "red",
+      data:[10.000,50.000,20.000,5.000,1.000]
+     } 
+  ]
   },
   options: {}
 });
