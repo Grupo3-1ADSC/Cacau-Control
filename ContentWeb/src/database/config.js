@@ -23,12 +23,22 @@ var mySqlConfig = {
 
     user: "root",
     database: "CacauControl",
+    password: "583299",
+=======
+<<<<<<< HEAD
+    user: "root",
+    database: "CacauControl",
     password: "#Gf49231203800",
 
     user: "aluno",
     database: "CacauControl",
     password: "sptech",
+<<<<<<< HEAD
 
+=======
+>>>>>>> 522eccf1794abbc7aa4d80be64f6aa8927f626c7
+>>>>>>> ff62926d5cfd0c3436914ca8de82335b907f3a39
+>>>>>>> 8b60bca51848c5adb7579e64734b3892e49d7b22
 };
 
 function executar(instrucao) {
