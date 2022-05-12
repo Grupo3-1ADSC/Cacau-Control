@@ -41,9 +41,6 @@
     
     <br>
 
-    <input id="Perda" class="input2" placeholder="Quantidade de perda Kg">
-    
-    <br>
 
     <input id="Valor" class="input3" placeholder="Valor do Kg em R$">  <br>
 
@@ -71,18 +68,17 @@
 
     var Colheita = ColheitaIdeal.value
     var ValorPorKg = Valor.value
-    var PerdaPorKg = Perda.value
-
     var LucroIdeal = Colheita * ValorPorKg 
-    var ColheitaReal = (Colheita - PerdaPorKg)
-    var valor_perdido_porcentagem = (100 * PerdaPorKg) / Colheita
-    var LucroReal = ColheitaReal * ValorPorKg
-    var valor_vendido_porcentagem = LucroReal * 100 / LucroIdeal
+    var valor_com_perda =  LucroIdeal * 0.6
+    var valor_vendido_porcentagem = valor_com_perda * 100 / LucroIdeal
 
-    div1.innerHTML = `Você colhe ${Colheita} KG, mas consegue vender apenas ${valor_vendido_porcentagem.toFixed(2)}% de tudo que colheu <br>
-        Tendo assim uma receita de R$${LucroReal} <br> 
+
+
+    div1.innerHTML = `Você colhe ${Colheita} KG, mas consegue vender apenas ${valor_vendido_porcentagem.toFixed(2)}% 
+    de tudo que colheu <br>
+        Tendo assim uma receita de R$${valor_com_perda} <br> 
         Sendo que sua receita deveria ser de R$${LucroIdeal} <br>
-        Ou seja você perde ${valor_perdido_porcentagem.toFixed(2)}%`;
+        Ou seja você perde 40% para as pragas`;
     fundo.style.height = "120vh";
     div1.style.backgroundColor = "transparent";
     div1.style.width = "45%";
