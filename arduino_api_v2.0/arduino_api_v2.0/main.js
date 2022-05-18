@@ -51,7 +51,7 @@ const serial = async (
         const luminosidade = parseFloat(valores[3]);
         const lm35Temperatura = parseFloat(valores[2]);
         const chave = parseInt(valores[4]);
-        const fksensor = 
+
         // vetor valores luminosidade que vai alimentar o endpoint 
 
         valoresDht11Umidade.push(dht11Umidade);
