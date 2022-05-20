@@ -24,9 +24,9 @@ const serial = async (
         // cria um usuario que possa fazer apenas inserts e coloca aqui para proteção dos dados 
             host: 'localhost',
             port: 3306,
-            user: 'root',
-            password: '#Gf49231203800',
-            database: 'arq_comp'
+            user: 'aluno',
+            password: 'sptech',
+            database: 'CacauControl'
         }
     ).promise(); // espera que aconteça alguma coisa para assim realizar a conexao com o banco
 
@@ -58,11 +58,41 @@ const serial = async (
         valoresDht11Temperatura.push(dht11Temperatura);
         valoresLuminosidade.push(luminosidade);
         valoresLm35Temperatura.push(lm35Temperatura);
-        valoresChave.push(chave);  // se for verdadeiro 
+        valoresChave.push(chave);  
+
+        var dht11Umidade_sensor2 = dht11Umidade * 0.9
+        var dht11Temperatura_sensor2 = dht11Temperatura * 0.9
+        var dht11Umidade_sensor3 = dht11TUmidade * 1.1
+        var dht11Temperatura_sensor3 = dht11Temperatura * 1.1
+
+        // se for verdadeiro 
         // pega as credenciais da promessa e abre a conexao e insere ao banco 
         if (HABILITAR_OPERACAO_INSERIR) {
+//            var alerta_temperatura = 'normal'
+//            var alerta_umidade = 'normal'
+//            var alerta_temperatura_sensor2 = 'normal'
+//            var alerta_umidade_sensor2 = 'normal'
+//            var alerta_temperatura_sensor3 = 'normal'
+//            var alerta_umidade_sensor3 = 'normal'
+
+//            if (dht11Temperatura)
+//                 alerta_temperatura = 'critico'
+//            else if (dht11Temperatura)
+//                alerta_temperatura = 'alerta'
+//            else 
+//                alerta_temperatura = 'normal'
+
+//            if (dht11Umidade)
+//                alerta_umidade = 'critico'
+//            else if (dht11Umidade)  {
+//                alerta_umidade = 'alerta'
+//            }
+//            else {
+//                alerta_umidade = 'normal'
+//            }
+
             await poolBancoDados.execute(
-                'INSERT INTO hit_medicao (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fk_sensor) VALUES (?, ?, ?, ?, ?, (select idsensor from sensores where n_serial=1010))',
+                'INSERT INTO hist_medicao (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fkSensor_dht11, Alerta_Temperatura, Alerta_Umidade) VALUES (?, ?, ?, ?, ?, (select idsensor from sensor where n_serial=1010), ${alerta_temperatura}, ${umidade})',
                 [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
             );
             console.log("valores inseridos no banco: ", dht11Umidade + ", " + dht11Temperatura + ", " + luminosidade + ", " + lm35Temperatura + ", " + chave )
