@@ -59,8 +59,10 @@ FkCliente int,
 foreign key (FkCliente) references Cliente(idCliente)
 );
 
-
-
+insert into sensor values
+('1','1010','-23.655526', '-46.973499','1'),
+('2','1011','-12.086504', '-40.529983','2'),
+('3','1012','-10.157197', '-38.685469','3');
 select*from sensor;
 
 create table hist_medicao(
@@ -80,9 +82,9 @@ foreign key (FkSensor_dht11) references Sensor(idSensor)
 );
 
 
-
-
-
+insert into hist_medicao(dht11_umidade,dht11_temperatura,alerta_temperatura,alerta_umidade,fksensor_dht11) values
+('72','24','normal','normal','3');
+update hist_medicao set dht11_temperatura='29' where idHist='2';
 
 select* from hist_medicao;
 
