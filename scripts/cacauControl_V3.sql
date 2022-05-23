@@ -82,9 +82,11 @@ foreign key (FkSensor_dht11) references Sensor(idSensor)
 );
 
 
-insert into hist_medicao(dht11_umidade,dht11_temperatura,alerta_temperatura,alerta_umidade,fksensor_dht11) values
-('72','24','normal','normal','3');
-update hist_medicao set dht11_temperatura='29' where idHist='2';
 
-select* from hist_medicao;
+
+insert into hist_medicao(dht11_umidade,dht11_temperatura,alerta_temperatura,alerta_umidade,FkSensor_dht11) values
+('50','40','normal','normal','2');
+
+
+
 

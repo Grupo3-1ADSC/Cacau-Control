@@ -1,324 +1,474 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../js/funcoes.js"></script>
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/style1.css">
-    <link rel="icon" href="imgs/logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/style1.css" />
+    <link rel="icon" href="imgs/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
     <!-- link do chartJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+      type="text/javascript"
+      src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"
+    ></script>
 
     <!-- link font Awesome -->
-    <script src="https://kit.fontawesome.com/0de1e0c120.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/0de1e0c120.js"
+      crossorigin="anonymous"
+    ></script>
 
     <title>DashBoard | Cacau Control</title>
-</head>
+  </head>
 
-<body onload="validarSessao(), atualizarFeed()">
+  <body onload="validarSessao(), atualizarFeed()">
     <!-- side bar -->
     <div class="sideBar">
-
-        <div class="divUser">
-            <img src="imgs/logo.png" alt="">
-            <h3 id="b_usuario">usuário</h3>
+      <div class="divUser">
+        <img src="imgs/logo.png" alt="" />
+        <h3 id="b_usuario">usuário</h3>
+      </div>
+      <div class="divItems">
+        <div class="divItemSide sideBActive">
+          <i class="fa fa-solid fa-cloud-sun"></i>
+          <a href="">Gráficos</a>
         </div>
-        <div class="divItems">
-            <div class="divItemSide sideBActive">
-                <i class="fa fa-solid fa-cloud-sun"></i>
-                <a href="">Gráficos</a>
-            </div>
-            <div class="divItemSide">
-                <i class="fa fa-regular fa-money-bill"></i>
-                <a href="rendimentos.html">Rendimentos</a>
-            </div>
+        <div class="divItemSide">
+          <i class="fa fa-regular fa-money-bill"></i>
+          <a href="rendimentos.html">Rendimentos</a>
         </div>
-        <div class="configs">
-            <div class="divitemsConfigs">
-                <div class="divItemConf">
-                    <i class="fa fa-solid fa-door-open" onclick="limparSessao()"></i>
-                </div>
-                <div class="divItemConf">
-                    <i class="fa fa-solid fa-gear"></i>
-                </div>
-
-            </div>
-
+      </div>
+      <div class="configs">
+        <div class="divitemsConfigs">
+          <div class="divItemConf">
+            <i class="fa fa-solid fa-door-open" onclick="limparSessao()"></i>
+          </div>
+          <div class="divItemConf">
+            <i class="fa fa-solid fa-gear"></i>
+          </div>
         </div>
+      </div>
     </div>
     <!--  -->
     <div class="contentAll">
-        <div class="divnavDash">
-            <div class="divInfoIndex">
-                <img src="./imgs/metricas.png" alt="">
+      <div class="divnavDash">
+        <div class="divInfoIndex">
+          <img src="./imgs/metricas.png" alt="" />
+        </div>
+        <div class="divNavtime">
+          <div class="divHora">10:15 AM</div>
+          <div class="divData">17/04/22</div>
+          <div class="divUser">
+            <img src="imgs/logo.png" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div class="contentDashAll">
+        <div class="divLeftDash">
+          <div class="divSensors">
+            <h4>Informe o número do sensor: <input type="number" /></h4>
+          </div>
+
+          <div class="divControllers">
+            <div class="painelController">
+              <h2>Temperatura</h2>
+              <div class="divPainelItem temp">
+                <i class="fa fa-solid fa-temperature-low"></i>
+                <h1>30<span>℃</span></h1>
+                <i class="fa fa-solid fa-arrow-up"></i>
+              </div>
             </div>
-            <div class="divNavtime">
-                <div class="divHora">10:15 AM</div>
-                <div class="divData">17/04/22</div>
-                <div class="divUser">
-                    <img src="imgs/logo.png" alt="">
-                </div>
+            <div class="painelController">
+              <h2>Umidade</h2>
+              <div class="divPainelItem umi">
+                <i class="fa fa-solid fa-water"></i>
+                <h1>60<span>%</span></h1>
+                <i class="fa fa-solid fa-arrow-down"></i>
+              </div>
             </div>
+          </div>
+          <div class="divGraficos">
+            <div class="divItemGrafico">
+              <canvas
+                id="myChartTemp"
+                style="width: 90%; max-width: 1000px"
+              ></canvas>
+            </div>
+            <div class="divItemGrafico">
+              <canvas
+                id="myChartUmidade"
+                style="width: 90%; max-width: 2000px"
+              ></canvas>
+            </div>
+          </div>
         </div>
 
-        <div class="contentDashAll">
-            <div class="divLeftDash">
-                <div class="divSensors">
-                    <h4>Informe o número do sensor: <input type="number"></h4>
-                </div>
+        <div class="divRightDash">
+          <div class="divlabelAlarms">
+            <h4>Alarmes</h4>
+          </div>
+          <div class="divCardAlarms">
+            <div class="itemCardAlarm critico">
+              <h2>Sens.1</h2>
+              <i class="fa fa-solid fa-satellite-dish"></i>
 
-                <div class="divControllers">
-                    <div class="painelController">
-                        <h2>Temperatura</h2>
-                        <div class="divPainelItem temp">
-                            <i class="fa fa-solid fa-temperature-low"></i>
-                            <h1>30<span>℃</span></h1> <i class="fa fa-solid fa-arrow-up"></i>
-                        </div>
-                    </div>
-                    <div class="painelController">
-                        <h2>Umidade</h2>
-                        <div class="divPainelItem umi">
-                            <i class="fa fa-solid fa-water"></i>
-                            <h1>60<span>%</span></h1> <i class="fa fa-solid fa-arrow-down"></i>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="divGraficos">
-                    <div class="divItemGrafico">
-                        <canvas id="myChartTemp" style="width:90%;max-width:1000px"></canvas>
-                    </div>
-                    <div class="divItemGrafico">
-                        <canvas id="myChartUmidade" style="width:90%;max-width:2000px"></canvas>
-                    </div>
-                </div>
-
+              <div class="divInfoAlarm critico">CRÍTICO</div>
             </div>
 
-            <div class="divRightDash">
-                <div class="divlabelAlarms">
-                    <h4>Alarmes</h4>
-                </div>
-                <div class="divCardAlarms">
-
-                    <div class="itemCardAlarm critico">
-                        <h2>Sens.1</h2>
-                        <i class="fa fa-solid fa-satellite-dish"></i>
-
-                        <div class="divInfoAlarm critico">CRÍTICO</div>
-                    </div>
-
-                    <div class="itemCardAlarm normal">
-                        <h2>Sens.2</h2>
-                        <i class="fa fa-solid fa-satellite-dish"></i>
-                        <div class="divInfoAlarm normal">ESTÁVEL</div>
-                    </div>
-                    <div class="itemCardAlarm alerta">
-                        <h2>Sens.3</h2>
-                        <i class="fa fa-solid fa-satellite-dish"></i>
-                        <div class="divInfoAlarm alerta">ALERTA</div>
-                    </div>
-                    <div class="itemCardAlarm alerta">
-                        <h2>Sens.4</h2>
-                        <i class="fa fa-solid fa-satellite-dish"></i>
-                        <div class="divInfoAlarm alerta">ALERTA</div>
-                    </div>
-
-                    <div class="itemCardAlarm critico">
-                        <h2>Sens.5</h2>
-                        <i class="fa fa-solid fa-satellite-dish"></i>
-                        <div class="divInfoAlarm critico">CRÍTICO</div>
-                    </div>
-                    <div class="itemCardAlarm critico">
-                        <h2>Sens.6</h2>
-                        <i class="fa fa-solid fa-satellite-dish"></i>
-                        <div class="divInfoAlarm critico">CRÍTICO</div>
-                    </div>
-                    <div class="itemCardAlarm critico">
-                        <h2>Sens.7</h2>
-                        <i class="fa fa-solid fa-satellite-dish"></i>
-                        <div class="divInfoAlarm critico">CRÍTICO</div>
-                    </div>
-                </div>
-
+            <div class="itemCardAlarm normal">
+              <h2>Sens.2</h2>
+              <i class="fa fa-solid fa-satellite-dish"></i>
+              <div class="divInfoAlarm normal">ESTÁVEL</div>
             </div>
+            <div class="itemCardAlarm alerta">
+              <h2>Sens.3</h2>
+              <i class="fa fa-solid fa-satellite-dish"></i>
+              <div class="divInfoAlarm alerta">ALERTA</div>
+            </div>
+            <div class="itemCardAlarm alerta">
+              <h2>Sens.4</h2>
+              <i class="fa fa-solid fa-satellite-dish"></i>
+              <div class="divInfoAlarm alerta">ALERTA</div>
+            </div>
+
+            <div class="itemCardAlarm critico">
+              <h2>Sens.5</h2>
+              <i class="fa fa-solid fa-satellite-dish"></i>
+              <div class="divInfoAlarm critico">CRÍTICO</div>
+            </div>
+            <div class="itemCardAlarm critico">
+              <h2>Sens.6</h2>
+              <i class="fa fa-solid fa-satellite-dish"></i>
+              <div class="divInfoAlarm critico">CRÍTICO</div>
+            </div>
+            <div class="itemCardAlarm critico">
+              <h2>Sens.7</h2>
+              <i class="fa fa-solid fa-satellite-dish"></i>
+              <div class="divInfoAlarm critico">CRÍTICO</div>
+            </div>
+          </div>
         </div>
-
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
 
-
-<script src="scripts/graficoTemperatura.js"></script>
-<script src="scripts/graficoUmidade.js"></script>
+<!-- <script src="scripts/graficoTemperatura.js"></script>
+<script src="scripts/graficoUmidade.js"></script> -->
 <script>
-    
-    let proximaAtualizacao;
+  let proximaAtualizacao;
+  let proximaAtualizacao2;
 
-window.onload = obterDadosGrafico(1);
+  window.onload = obterDadosGrafico(1);
+  window.onload = obterDadosGrafico2(1);
+  
 
-b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-//verificar_autenticacao();
+  // verificar_autenticacao();
 
-// altere aqui como os dados serão exibidos
-// e como são recuperados do BackEnd
-function obterDadosGrafico(idAquario) {
+  // O gráfico é construído com três funções:
+  // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
+  // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
+  // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
+
+  // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
+  // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
+  // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
+
+  //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+  //     Para ajustar o "select", ajuste o comando sql em src/models
+  function obterDadosGrafico(idSensor) {
     if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
+      clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/medidas/ultimasTemperatura/${idSensor}`, { cache: "no-store" })
+      .then(function (response) {
         if (response.ok) {
-            response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                resposta.reverse();
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
 
-                plotarGrafico(resposta, idAquario);
-            });
+            plotarGrafico(resposta, idSensor);
+          });
         } else {
-            console.error('Nenhum dado encontrado ou erro na API');
+          console.error("Nenhum dado encontrado ou erro na API");
         }
-    })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+  }
 
-}
+  
+  function obterDadosGrafico2(idSensor) {
+    if (proximaAtualizacao2 != undefined) {
+      clearTimeout(proximaAtualizacao2);
+    }
 
-// só altere aqui se souber o que está fazendo!
-function plotarGrafico(resposta, idAquario) {
-    console.log('iniciando plotagem do gráfico...');
+    fetch(`/medidas/ultimasUmidade/${idSensor}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            plotarGrafico2(resposta, idSensor);
+          });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+  }
+
+  // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+  // Configura o gráfico (cores, tipo, etc), materializa-o na página e,
+  // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+
+  function plotarGrafico(resposta, idSensor) {
+    console.log("iniciando plotagem do gráfico...");
 
     var dados = {
-        labels: [],
-        datasets: [
-            {
-                yAxisID: 'y-umidade',
-                label: 'Umidade',
-                borderColor: '#32B9CD',
-                backgroundColor: '#32b9cd8f',
-                fill: true,
-                data: []
-            },
-            {
-                yAxisID: 'y-temperatura',
-                label: 'Temperatura',
-                borderColor: '#FFF',
-                backgroundColor: '#32b9cd8f',
-                fill: true,
-                data: []
-            }
-        ]
+      labels: [],
+      datasets: [
+        {
+          yAxisID: "y-temperatura",
+          label: "Temperatura",
+          borderColor: "#E0AA1E",
+          backgroundColor: "#E0AA1E",
+          fill: true,
+          data: [],
+        }
+      ],
     };
 
     for (i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
-        dados.labels.push(registro.momento_grafico);
-        dados.datasets[0].data.push(registro.umidade);
-        dados.datasets[1].data.push(registro.temperatura);
+      var registro = resposta[i];
+      dados.labels.push(registro.momento_grafico);
+
+      dados.datasets[0].data.push(registro.temperatura);
     }
 
     console.log(JSON.stringify(dados));
 
-    var ctx = canvas_grafico.getContext('2d');
+    var ctx = myChartTemp.getContext("2d");
     window.grafico_linha = Chart.Line(ctx, {
-        data: dados,
-        //Configurações do gráfico
-        options: {
-            responsive: true,
-            animation: { duration: 500 },
-            hoverMode: 'index',
-            stacked: false,
-            title: {
-                display: true,
-                text: 'Histórico recente de umidade/temperatura'
+      data: dados,
+      options: {
+        responsive: true,
+        animation: { duration: 500 },
+        hoverMode: "index",
+        stacked: false,
+        title: {
+          display: false,
+          text: "Dados capturados",
+        },
+        scales: {
+          yAxes: [
+            {
+              type: "linear",
+              display: true,
+              position: "left",
+              id: "y-temperatura",
+              ticks: {
+                beginAtZero: true,
+                max: 100,
+                min: 0,
+              },
             },
-            scales: {
-                yAxes: [{
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                    id: 'y-temperatura',
-                    ticks: {
-                        beginAtZero: true,
-                        max: 100,
-                        min: 0
-                    }
-                }, {
-                    type: 'linear',
-                    display: false,
-                    position: 'right',
-                    id: 'y-umidade',
-                    ticks: {
-                        beginAtZero: true,
-                        max: 100,
-                        min: 0
-                    },
+            {
+              type: "linear",
+              display: false,
+              position: "right",
+              id: "y-umidade",
+              ticks: {
+                beginAtZero: true,
+                max: 100,
+                min: 0,
+              },
 
-                    gridLines: {
-                        drawOnChartArea: false,
-                    },
-                }],
-            }
-        }
+              gridLines: {
+                drawOnChartArea: false,
+              },
+            },
+          ],
+        },
+      },
     });
 
-    function sendData() {
-        var http = new XMLHttpRequest();
-        http.open('POST', 'http://localhost:3000/api/sendData', false);
-        http.send(null);
+    setTimeout(() => atualizarGrafico(idSensor, dados), 2000);
+  }
+
+  function plotarGrafico2(resposta, idSensor) {
+    console.log("iniciando plotagem do gráfico...");
+
+    var dados1 = {
+      labels: [],
+      datasets: [
+        {
+          yAxisID: "y-umidade",
+          label: "Umidade",
+          borderColor: "#1EC9E0",
+          backgroundColor: "#1EC9E0",
+          fill: true,
+          data: [],
+        }
+      ],
+    };
+
+    for (i = 0; i < resposta.length; i++) {
+      var registro = resposta[i];
+      dados1.labels.push(registro.momento_grafico);
+      dados1.datasets[0].data.push(registro.umidade);
     }
 
-    setInterval(() => {
-        sendData();
-    }, 2000);
+    console.log(JSON.stringify(dados1));
 
-    //Atualiza os dados de 5 em 5 segundos
-    setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
-}
+    var ctx = myChartUmidade.getContext("2d");
+    window.grafico_linha1 = Chart.Line(ctx, {
+      data: dados1,
+      options: {
+        responsive: true,
+        animation: { duration: 500 },
+        hoverMode: "index",
+        stacked: false,
+        title: {
+          display: false,
+          text: "Dados capturados",
+        },
+        scales: {
+          yAxes: [
+            {
+              type: "linear",
+              display: true,
+              position: "left",
+              id: "y-temperatura",
+              ticks: {
+                beginAtZero: true,
+                max: 100,
+                min: 0,
+              },
+            },
+            {
+              type: "linear",
+              display: false,
+              position: "right",
+              id: "y-umidade",
+              ticks: {
+                beginAtZero: true,
+                max: 100,
+                min: 0,
+              },
 
-// só mexer se quiser alterar o tempo de atualização
-// ou se souber o que está fazendo!
-function atualizarGrafico(idAquario, dados) {
+              gridLines: {
+                drawOnChartArea: false,
+              },
+            },
+          ],
+        },
+      },
+    });
 
-    fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+    setTimeout(() => atualizarGrafico2(idSensor, dados1), 2001);
+  }
+
+  // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+  // buscando a última medida inserida em tabela contendo as capturas,
+
+  //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+  //     Para ajustar o "select", ajuste o comando sql em src/models
+  function atualizarGrafico(idSensor, dados) {
+    fetch(`/medidas/tempo-realTemperatura/${idSensor}`, { cache: "no-store" })
+      .then(function (response) {
         if (response.ok) {
-            response.json().then(function (novoRegistro) {
+          response.json().then(function (novoRegistro) {
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            console.log(`Dados atuais do gráfico: ${dados}`);
 
-                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                console.log(`Dados atuais do gráfico: ${dados}`);
+            // tirando e colocando valores no gráfico
+            dados.labels.shift(); // apagar o primeiro
+            dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
-                // tirando e colocando valores no gráfico
-                dados.labels.shift(); // apagar o primeiro
-                dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-                dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-                dados.datasets[1].data.shift();  // apagar o primeiro de umidade
-                dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de umidade
+            dados.datasets[0].data.shift(); // apagar o primeiro de temperatura
+            dados.datasets[0].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
 
-                window.grafico_linha.update();
+            window.grafico_linha.update();
 
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
-            });
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(
+              () => atualizarGrafico(idSensor, dados),
+              2000
+            );
+          });
         } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-            proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+          console.error("Nenhum dado encontrado ou erro na API");
+          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+          proximaAtualizacao = setTimeout(
+            () => atualizarGrafico(idSensor, dados),
+            2000
+          );
         }
-    })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+  }
 
-}
+  function atualizarGrafico2(idSensor, dados) {
+    fetch(`/medidas/tempo-realUmidade/${idSensor}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (novoRegistro) {
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            console.log(`Dados atuais do gráfico: ${dados}`);
+
+            // tirando e colocando valores no gráfico
+            dados.labels.shift(); // apagar o primeiro
+            dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+            dados.datasets[0].data.shift(); // apagar o primeiro de umidade
+            dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+
+            window.grafico_linha1.update();
+
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao2 = setTimeout(
+              () => atualizarGrafico2(idSensor, dados),
+              2000
+            );
+          });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+          proximaAtualizacao2 = setTimeout(
+            () => atualizarGrafico2(idSensor, dados),
+            2000
+          );
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+  }
 </script>
