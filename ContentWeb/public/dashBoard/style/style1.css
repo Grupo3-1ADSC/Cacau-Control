@@ -372,6 +372,7 @@
     margin-top:5%;
     background-color: white;
     border-radius: 10px 10px 10px 10px;
+    cursor: pointer;
 }
 
 .itemCardAlarm h2{
@@ -398,7 +399,9 @@
 /*  */
 /* normal */
 /* card */
-
+.itemCardAlarm.normal{
+    order: 1;
+}
 .itemCardAlarm.normal h2{
     color: #2DB5B2;
 }
@@ -409,6 +412,9 @@
     background-color: #2DB5B2;
 }
 /* alertas */
+.itemCardAlarm.alerta{
+    order: 0;
+}
 .itemCardAlarm.alerta h2{
     color: #DBBA01;
 }
@@ -419,7 +425,9 @@
     background-color: #DBBA01;
 }
 /* critico */
-
+.itemCardAlarm.critico{
+    order:-1 ;
+}
 .itemCardAlarm.critico h2{
     color: #F47780;
 }

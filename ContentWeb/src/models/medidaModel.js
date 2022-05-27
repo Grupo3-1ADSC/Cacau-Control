@@ -10,16 +10,18 @@ function buscarUltimasMedidasTemperatura(idSensor, limite_linhas) {
                         momento,
                         CONVERT(varchar, momento, 108) as momento_grafico
                     from  hist_medicao
-                    where FkSensor_dht11 = '2'
+                    where FkSensor_dht11 = ${idSensor}
                     order by idHist desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
-        dht11_temperatura as temperatura, 
-                        momento,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-                    from hist_medicao
-                    where FkSensor_dht11 = '2'
-                    order by idHist desc limit ${limite_linhas}`;
+        hist.dht11_temperatura as temperatura, 
+                        hist.momento,
+                        DATE_FORMAT(hist.momento,'%H:%i:%s') as momento_grafico
+                    from hist_medicao as hist
+                    inner join sensor as sen
+                    on hist.FkSensor_dht11 = sen.idSensor
+                    where hist.FkSensor_dht11 = ${idSensor}
+                    order by idHist desc limit ${limite_linhas};`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -39,16 +41,18 @@ function buscarUltimasMedidasUmidade(idSensor, limite_linhas) {
                         momento,
                         CONVERT(varchar, momento, 108) as momento_grafico
                     from hist_medicao
-                    where FkSensor_dht11 = '2'
+                    where FkSensor_dht11 = ${idSensor}
                     order by idHist desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
-        dht11_umidade as umidade,
-                        momento,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-                    from hist_medicao
-                    where FkSensor_dht11 = '2'
-                    order by idHist desc limit ${limite_linhas}`;
+        hist.dht11_umidade as umidade, 
+                        hist.momento,
+                        DATE_FORMAT(hist.momento,'%H:%i:%s') as momento_grafico
+                    from hist_medicao as hist
+                    inner join sensor as sen
+                    on hist.FkSensor_dht11 = sen.idSensor
+                    where hist.FkSensor_dht11 = ${idSensor}
+                    order by idHist desc limit ${limite_linhas};`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -69,16 +73,19 @@ function buscarMedidasEmTempoRealTemperatura(idSensor) {
         dht11_umidade as umidade,  
                         CONVERT(varchar, momento, 108) as momento_grafico, 
                         FkSensor_dht11
-                        from hist_medicao where FkSensor_dht11 = '2' 
+                        from hist_medicao where FkSensor_dht11 = ${idSensor}
                     order by idHist desc`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
-        dht11_temperatura as temperatura, 
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
+        hist.dht11_temperatura as temperatura, 
+                        DATE_FORMAT(hist.momento,'%H:%i:%s') as momento_grafico, 
                         FkSensor_dht11
-                        from hist_medicao where FkSensor_dht11 = '2' 
-                    order by idHist desc limit 1`;
+                        from hist_medicao as hist 
+                        inner join Sensor as sen 
+                        on hist.FkSensor_dht11= sen.idSensor
+                        where hist.FkSensor_dht11 = ${idSensor}
+                    order by hist.idHist desc limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -99,16 +106,19 @@ function buscarMedidasEmTempoRealUmidade(idSensor) {
         dht11_umidade as umidade,  
                         CONVERT(varchar, momento, 108) as momento_grafico, 
                         FkSensor_dht11
-                        from hist_medicao where FkSensor_dht11 = '2' 
+                        from hist_medicao where FkSensor_dht11 = ${idSensor} 
                     order by idHist desc`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select  
-        dht11_umidade as umidade,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
+        instrucaoSql = `select 
+        hist.dht11_umidade as umidade, 
+                        DATE_FORMAT(hist.momento,'%H:%i:%s') as momento_grafico, 
                         FkSensor_dht11
-                        from hist_medicao where FkSensor_dht11 = '2' 
-                    order by idHist desc limit 1`;
+                        from hist_medicao as hist 
+                        inner join Sensor as sen 
+                        on hist.FkSensor_dht11= sen.idSensor
+                        where hist.FkSensor_dht11 = ${idSensor}
+                    order by hist.idHist desc limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return

@@ -22,7 +22,7 @@ var mySqlConfig = {
     host: "localhost",
     user: "root",
     database: "CacauControl",
-    password: "123456789",
+    password: "balldragon",
 
 };
 
