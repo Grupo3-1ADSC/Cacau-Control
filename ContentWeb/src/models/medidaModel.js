@@ -4,14 +4,15 @@ function buscarUltimasMedidasTemperatura(idSensor, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top ${limite_linhas}
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        momento,
-                        CONVERT(varchar, momento, 108) as momento_grafico
-                    from  hist_medicao
-                    where FkSensor_dht11 = ${idSensor}
-                    order by idHist desc`;
+        instrucaoSql = `select 
+        hist.dht11_temperatura as temperatura, 
+                        hist.momento,
+                        CONVERT(varchar, hist.momento, 108) as momento_grafico
+                    from hist_medicao as hist
+                    inner join sensor as sen
+                    on hist.FkSensor_dht11 = sen.idSensor
+                    where hist.FkSensor_dht11 = ${idSensor}
+                    order by hist.idHist desc;`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
         hist.dht11_temperatura as temperatura, 
@@ -35,14 +36,15 @@ function buscarUltimasMedidasUmidade(idSensor, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top ${limite_linhas}
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        momento,
-                        CONVERT(varchar, momento, 108) as momento_grafico
-                    from hist_medicao
-                    where FkSensor_dht11 = ${idSensor}
-                    order by idHist desc`;
+        instrucaoSql = `select 
+        hist.dht11_umidade as umidade, 
+                        hist.momento,
+                        CONVERT(varchar, hist.momento, 108) as momento_grafico
+                    from hist_medicao as hist
+                    inner join sensor as sen
+                    on hist.FkSensor_dht11 = sen.idSensor
+                    where hist.FkSensor_dht11 = ${idSensor}
+                    order by hist.idHist desc;`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
         hist.dht11_umidade as umidade, 
@@ -68,13 +70,15 @@ function buscarMedidasEmTempoRealTemperatura(idSensor) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top 1
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        CONVERT(varchar, momento, 108) as momento_grafico, 
+        instrucaoSql = `select 
+        hist.dht11_temperatura as temperatura, 
+        CONVERT(varchar, hist.momento, 108) as momento_grafico, 
                         FkSensor_dht11
-                        from hist_medicao where FkSensor_dht11 = ${idSensor}
-                    order by idHist desc`;
+                        from hist_medicao as hist 
+                        inner join Sensor as sen 
+                        on hist.FkSensor_dht11= sen.idSensor
+                        where hist.FkSensor_dht11 = ${idSensor}
+                        order by hist.idHist desc;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
@@ -101,13 +105,15 @@ function buscarMedidasEmTempoRealUmidade(idSensor) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top 1
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        CONVERT(varchar, momento, 108) as momento_grafico, 
+        instrucaoSql = `select 
+        hist.dht11_umidade as umidade, 
+        CONVERT(varchar, hist.momento, 108) as momento_grafico, 
                         FkSensor_dht11
-                        from hist_medicao where FkSensor_dht11 = ${idSensor} 
-                    order by idHist desc`;
+                        from hist_medicao as hist 
+                        inner join Sensor as sen 
+                        on hist.FkSensor_dht11= sen.idSensor
+                        where hist.FkSensor_dht11 = ${idSensor}
+                        order by hist.idHist desc;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
