@@ -547,7 +547,7 @@ footer{
 }
 
 .divContentItemsFooter{
-    width: 100%;
+    width: 92%;
     height: 80%;
     display: flex;
     align-items: center;
@@ -621,5 +621,6 @@ footer{
     height: 20%;
     padding: 0 0 1% 0;
     font-weight: 900;
+    margin-top: 5%;
 }
 
