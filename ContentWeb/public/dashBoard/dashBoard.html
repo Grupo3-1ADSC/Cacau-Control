@@ -1,368 +1,387 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../js/funcoes.js"></script>
-    <link rel="stylesheet" href="style/style.css" />
-    <link rel="stylesheet" href="style/style1.css" />
-    <link rel="icon" href="imgs/logo.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <!-- link do chartJS -->
-    <script
-      type="text/javascript"
-      src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"
-    ></script>
 
-    <!-- link font Awesome -->
-    <script
-      src="https://kit.fontawesome.com/0de1e0c120.js"
-      crossorigin="anonymous"
-    ></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="../js/funcoes.js"></script>
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="stylesheet" href="style/style1.css" />
+  <link rel="icon" href="imgs/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+  <!-- link do chartJS -->
+  <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
 
-    <title>DashBoard | Cacau Control</title>
-  </head>
+  <!-- link font Awesome -->
+  <script src="https://kit.fontawesome.com/0de1e0c120.js" crossorigin="anonymous"></script>
 
-  <body onload="validarSessao(),atualizacaoPeriodica()">
-    <!-- side bar -->
-    <div class="sideBar">
-      <div class="divUser">
-        <img src="imgs/logo.png" alt="" />
-        <h3 id="b_usuario">usuário</h3>
+  <title>DashBoard | Cacau Control</title>
+</head>
+
+<body onload="validarSessao(),atualizacaoPeriodica()">
+  <!-- side bar -->
+  <div class="sideBar">
+    <div class="divUser">
+      <img src="imgs/logo.png" alt="" />
+      <h3 id="b_usuario">usuário</h3>
+    </div>
+    <div class="divItems">
+      <div class="divItemSide sideBActive">
+        <i class="fa fa-solid fa-cloud-sun"></i>
+        <a href="">Gráficos</a>
       </div>
-      <div class="divItems">
-        <div class="divItemSide sideBActive">
-          <i class="fa fa-solid fa-cloud-sun"></i>
-          <a href="">Gráficos</a>
+      <div class="divItemSide">
+        <i class="fa fa-regular fa-money-bill"></i>
+        <a href="rendimentos.html">Rendimentos</a>
+      </div>
+    </div>
+    <div class="configs">
+      <div class="divitemsConfigs">
+        <div class="divItemConf">
+          <i class="fa fa-solid fa-door-open" onclick="limparSessao()"></i>
         </div>
-        <div class="divItemSide">
-          <i class="fa fa-regular fa-money-bill"></i>
-          <a href="rendimentos.html">Rendimentos</a>
+        <div class="divItemConf">
+          <i class="fa fa-solid fa-gear"></i>
         </div>
       </div>
-      <div class="configs">
-        <div class="divitemsConfigs">
-          <div class="divItemConf">
-            <i class="fa fa-solid fa-door-open" onclick="limparSessao()"></i>
+    </div>
+  </div>
+  <!--  -->
+  <div class="contentAll">
+    <div class="divnavDash">
+      <div class="divInfoIndex">
+        <img src="./imgs/metricas.png" alt="" />
+      </div>
+      <div class="divNavtime">
+        <div class="divHora">10:15 AM</div>
+        <div class="divData">17/04/22</div>
+        <div class="divUser">
+          <img src="imgs/logo.png" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="contentDashAll">
+      <div class="divLeftDash">
+        <div class="divSensors">
+        </div>
+
+        <div class="divControllers">
+          <div class="painelController">
+            <h2>Temperatura</h2>
+            <div id="realTemp" class="divPainelItem temp">
+              <i class="fa fa-solid fa-temperature-low"></i>
+              <h1 id="valorTemp">
+                <!-- 30<span>℃</span> -->
+              </h1>
+              <!-- <i class="fa fa-solid fa-arrow-up"></i> -->
+            </div>
           </div>
-          <div class="divItemConf">
-            <i class="fa fa-solid fa-gear"></i>
+          <div class="painelController">
+            <h2>Umidade</h2>
+            <div class="divPainelItem umi">
+              <i class="fa fa-solid fa-water"></i>
+              <h1 id="valorUmi">
+                <!-- 60<span>%</span> -->
+              </h1>
+              <!-- <i class="fa fa-solid fa-arrow-down"></i> -->
+            </div>
+          </div>
+        </div>
+        <div class="divGraficos">
+          <div class="divItemGrafico">
+            <canvas id="myChartTemp" style="width: 90%; max-width: 1000px"></canvas>
+          </div>
+          <div class="divItemGrafico">
+            <canvas id="myChartUmidade" style="width: 90%; max-width: 2000px"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="divRightDash">
+        <div class="divlabelAlarms">
+          <h4>Alarmes</h4>
+        </div>
+        <div class="divCardAlarms">
+          <div id="card_1" onclick="botao1()" class="itemCardAlarm critico">
+            <h2>Sens.1</h2>
+            <i class="fa fa-solid fa-satellite-dish"></i>
+
+            <div id="card_1text" class="divInfoAlarm critico">CRÍTICO</div>
+          </div>
+
+          <div id="card_2" onclick="botao2()" class="itemCardAlarm normal">
+            <h2>Sens.2</h2>
+            <i class="fa fa-solid fa-satellite-dish"></i>
+            <div id="card_2text" class="divInfoAlarm normal">ESTÁVEL</div>
+          </div>
+          <div class="itemCardAlarm alerta">
+            <h2>Sens.3</h2>
+            <i class="fa fa-solid fa-satellite-dish"></i>
+            <div class="divInfoAlarm alerta">ALERTA</div>
+          </div>
+          <div class="itemCardAlarm alerta">
+            <h2>Sens.4</h2>
+            <i class="fa fa-solid fa-satellite-dish"></i>
+            <div class="divInfoAlarm alerta">ALERTA</div>
+          </div>
+
+          <div class="itemCardAlarm critico">
+            <h2>Sens.5</h2>
+            <i class="fa fa-solid fa-satellite-dish"></i>
+            <div class="divInfoAlarm critico">CRÍTICO</div>
+          </div>
+          <div class="itemCardAlarm critico">
+            <h2>Sens.6</h2>
+            <i class="fa fa-solid fa-satellite-dish"></i>
+            <div class="divInfoAlarm critico">CRÍTICO</div>
+          </div>
+          <div class="itemCardAlarm critico">
+            <h2>Sens.7</h2>
+            <i class="fa fa-solid fa-satellite-dish"></i>
+            <div class="divInfoAlarm critico">CRÍTICO</div>
           </div>
         </div>
       </div>
     </div>
-    <!--  -->
-    <div class="contentAll">
-      <div class="divnavDash">
-        <div class="divInfoIndex">
-          <img src="./imgs/metricas.png" alt="" />
-        </div>
-        <div class="divNavtime">
-          <div class="divHora">10:15 AM</div>
-          <div class="divData">17/04/22</div>
-          <div class="divUser">
-            <img src="imgs/logo.png" alt="" />
-          </div>
-        </div>
-      </div>
+  </div>
+</body>
 
-      <div class="contentDashAll">
-        <div class="divLeftDash">
-          <div class="divSensors">
-          </div>
-
-          <div class="divControllers">
-            <div class="painelController">
-              <h2>Temperatura</h2>
-              <div class="divPainelItem temp">
-                <i class="fa fa-solid fa-temperature-low"></i>
-                <h1 id="valorTemp">
-                  <!-- 30<span>℃</span> -->
-                </h1>
-                <i class="fa fa-solid fa-arrow-up"></i>
-              </div>
-            </div>
-            <div class="painelController">
-              <h2>Umidade</h2>
-              <div class="divPainelItem umi">
-                <i class="fa fa-solid fa-water"></i>
-                <h1 id="valorUmi">
-                  <!-- 60<span>%</span> -->
-                </h1>
-                <i class="fa fa-solid fa-arrow-down"></i>
-              </div>
-            </div>
-          </div>
-          <div class="divGraficos">
-            <div class="divItemGrafico">
-              <canvas
-                id="myChartTemp"
-                style="width: 90%; max-width: 1000px"
-              ></canvas>
-            </div>
-            <div class="divItemGrafico">
-              <canvas
-                id="myChartUmidade"
-                style="width: 90%; max-width: 2000px"
-              ></canvas>
-            </div>
-          </div>
-        </div>
-
-        <div class="divRightDash">
-          <div class="divlabelAlarms">
-            <h4>Alarmes</h4>
-          </div>
-          <div  class="divCardAlarms">
-            <div onclick="botao1()" class="itemCardAlarm critico">
-              <h2>Sens.1</h2>
-              <i class="fa fa-solid fa-satellite-dish"></i>
-
-              <div class="divInfoAlarm critico">CRÍTICO</div>
-            </div>
-
-            <div onclick="botao2()" class="itemCardAlarm normal">
-              <h2>Sens.2</h2>
-              <i class="fa fa-solid fa-satellite-dish"></i>
-              <div class="divInfoAlarm normal">ESTÁVEL</div>
-            </div>
-            <div class="itemCardAlarm alerta">
-              <h2>Sens.3</h2>
-              <i class="fa fa-solid fa-satellite-dish"></i>
-              <div class="divInfoAlarm alerta">ALERTA</div>
-            </div>
-            <div class="itemCardAlarm alerta">
-              <h2>Sens.4</h2>
-              <i class="fa fa-solid fa-satellite-dish"></i>
-              <div class="divInfoAlarm alerta">ALERTA</div>
-            </div>
-
-            <div class="itemCardAlarm critico">
-              <h2>Sens.5</h2>
-              <i class="fa fa-solid fa-satellite-dish"></i>
-              <div class="divInfoAlarm critico">CRÍTICO</div>
-            </div>
-            <div class="itemCardAlarm critico">
-              <h2>Sens.6</h2>
-              <i class="fa fa-solid fa-satellite-dish"></i>
-              <div class="divInfoAlarm critico">CRÍTICO</div>
-            </div>
-            <div class="itemCardAlarm critico">
-              <h2>Sens.7</h2>
-              <i class="fa fa-solid fa-satellite-dish"></i>
-              <div class="divInfoAlarm critico">CRÍTICO</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
 </html>
 
 <!-- <script src="scripts/graficoTemperatura.js"></script>
 <script src="scripts/graficoUmidade.js"></script> -->
 <script>
 
-  var valor 
-
   let proximaAtualizacao;
   let proximaAtualizacao2;
 
-  var idSensor= 0
 
-function botao1(){
-  idSensor=1
-window.onload = obterDadosGrafico(idSensor);
-window.onload = obterDadosGrafico2(idSensor);
+  var idSensor=0
 
-}
 
-function botao2(){
-  idSensor=2
-window.onload = obterDadosGrafico(idSensor);
-window.onload = obterDadosGrafico2(idSensor);
+  function botao1() {
+    idSensor = 1
+    window.onload = obterDadosGrafico(idSensor);
+    window.onload = obterDadosGrafico2(idSensor);
 
-}
+  }
 
-function atualizacaoPeriodica() {
-  obterDadosTemperatura(idSensor);
-  obterDadosUmidade(idSensor)
-        setTimeout(atualizacaoPeriodica, 2000);
+  function botao2() {
+    idSensor = 2
+    window.onload = obterDadosGrafico(idSensor);
+    window.onload = obterDadosGrafico2(idSensor);
+  }
+
+  function atualizacaoPeriodica() {
+    obterDadosTemperatura(idSensor);
+    obterDadosUmidade(idSensor)
+    setTimeout(atualizacaoPeriodica, 2000);
+  }
+
+
+  function obterDadosTemperatura(idSensor) {
+    fetch(`/medidas/tempo-realTemperatura/${idSensor}`)
+      .then(resposta => {
+
+        if (resposta.ok) {
+          resposta.json().then(resposta => {
+
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+            var dados = {
+              temperatura: resposta[0].temperatura,
+            }
+
+            alertar(resposta[0].temperatura, idSensor);
+          });
+        } else {
+
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+      });
+  }
+
+  function alertar(temperatura, idSensor) {
+
+    var limitesTemperatura = {
+      muito_quente: 29,
+      quente: 27,
+      // ideal: 24/26,
+      frio: 23,
+      muito_frio: 21
+    };
+    var classe_temperaturaText = 'divInfoAlarm';
+    var classe_temperatura = 'itemCardAlarm';
+    var texto1 = ""
+    var texto2 = ""
+    // var
+    
+    if (temperatura >= limitesTemperatura.muito_quente) {
+      texto1 = "Critico"
+      texto2 = "Critico"
+      realTemp.style.color="#F47780"
+      classe_temperatura = 'itemCardAlarm critico';
+      classe_temperaturaText = 'divInfoAlarm critico'
+      console.log("caiu no 1")
+    }
+    else if (temperatura < limitesTemperatura.muito_quente && temperatura >= limitesTemperatura.quente) {
+      texto1 = "Alerta"
+      texto2 = "Alerta"
+      realTemp.style.color="#DBBA01"
+      classe_temperatura = 'itemCardAlarm alerta';
+      classe_temperaturaText = 'divInfoAlarm alerta'
+      console.log("caiu no 2")
+    }
+    else if (temperatura < limitesTemperatura.quente && temperatura > limitesTemperatura.frio) {
+      texto1 = "normal"
+      texto2 = "normal"
+      realTemp.style.color="#2DB5B2"
+      classe_temperatura = 'itemCardAlarm normal';
+      classe_temperaturaText = 'divInfoAlarm normal'
+      console.log("caiu no 3")
+    }
+    else if (temperatura <= limitesTemperatura.frio && temperatura > limitesTemperatura.muito_frio) {
+      texto1 = "Alerta"
+      texto2 = "Alerta"
+      realTemp.style.color="#DBBA01"
+      classe_temperatura = 'itemCardAlarm alerta';
+      classe_temperaturaText = 'divInfoAlarm alerta'
+      console.log("caiu no 4")
+    }
+    else if (temperatura < limitesTemperatura.muito_frio) {
+      texto1 = "Critico"
+      texto2 = "Critico"
+      realTemp.style.color="#F47780"
+      classe_temperatura = 'itemCardAlarm critico';
+      classe_temperaturaText = 'divInfoAlarm critico'
+      console.log("caiu no 5")
     }
 
+    var itemCardAlarm;
+    var divInfoAlarm;
 
-    function obterDadosTemperatura(idSensor) {
-        fetch(`/medidas/tempo-realTemperatura/${idSensor}`)
-            .then(resposta => {
-
-                if (resposta.ok) {
-                    resposta.json().then(resposta => {
-
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                        var dados = {
-                            temperatura: resposta[0].temperatura,
-                        }
-
-                        alertar(resposta[0].temperatura, idSensor);
-                    });
-                } else {
-
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-            });
+    if (idSensor == 1) {
+      // temp_aquario_1.innerHTML = temperatura + "°C";
+      card_1text.innerHTML = texto1
+      
+      itemCardAlarm = card_1
+      divInfoAlarm = card_1text
+    } else if (idSensor == 2) {
+      // temp_aquario_2.innerHTML = temperatura + "°C";
+      card_2text.innerHTML = texto2
+      itemCardAlarm = card_2
+      divInfoAlarm = card_2text
+    } else if (idSensor == 3) {
+      // temp_aquario_3.innerHTML = temperatura + "°C";
+      itemCardAlarm = card_3
+    } else if (idSensor == 4) {
+      // temp_aquario_4.innerHTML = temperatura + "°C";
+      itemCardAlarm = card_4
     }
 
-    function alertar(temperatura, idSensor) {
+    valorTemp.innerHTML = temperatura + "C°";
+    console.log("minha temp atual" + temperatura)
 
-        var limitesTemperatura = {
-            muito_quente: 29,
-            quente: 27,
-            // ideal: 24/26,
-            frio: 23,
-            muito_frio: 21
-        };
+    // alterando
+    itemCardAlarm.className = classe_temperatura;
+    divInfoAlarm.className = classe_temperaturaText;
 
-        // var classe_temperatura = 'itemCardAlarm';
 
-        // if (temperatura >= limites.muito_quente) {
-        //     classe_temperatura = 'cor-alerta perigo-quente';
-        //     console.log("caiu no 1")
-        // }
-        // else if (temperatura < limites.muito_quente && temperatura >= limites.quente) {
-        //     classe_temperatura = 'cor-alerta alerta-quente';
-        //     console.log("caiu no 2")
-        // }
-        // else if (temperatura < limites.quente && temperatura > limites.frio) {
-        //     classe_temperatura = 'cor-alerta ideal';
-        //     console.log("caiu no 3")
-        // }
-        // else if (temperatura <= limites.frio && temperatura > limites.muito_frio) {
-        //     classe_temperatura = 'cor-alerta alerta-frio';
-        //     console.log("caiu no 4")
-        // }
-        // else if (temperatura < limites.min_temperatura) {
-        //     classe_temperatura = 'cor-alerta perigo-frio';
-        //     console.log("caiu no 5")
-        // }
-
-        // var card;
-
-        // if (idAquario == 1) {
-        //     temp_aquario_1.innerHTML = temperatura + "°C";
-        //     card = card_1
-        // } else if (idAquario == 2) {
-        //     temp_aquario_2.innerHTML = temperatura + "°C";
-        //     card = card_2
-        // } else if (idAquario == 3) {
-        //     temp_aquario_3.innerHTML = temperatura + "°C";
-        //     card = card_3
-        // } else if (idAquario == 4) {
-        //     temp_aquario_4.innerHTML = temperatura + "°C";
-        //     card = card_4
-        // }
-
-        valorTemp.innerHTML = temperatura+"C°";
-        console.log("minha temp atual"+ temperatura)
-
-        // alterando
-        // card.className = classe_temperatura;
-
-    }
+  }
 
 
 
-  
-    function obterDadosUmidade(idSensor) {
-        fetch(`/medidas/tempo-realUmidade/${idSensor}`)
-            .then(resposta => {
 
-                if (resposta.ok) {
-                    resposta.json().then(resposta => {
+  function obterDadosUmidade(idSensor) {
+    fetch(`/medidas/tempo-realUmidade/${idSensor}`)
+      .then(resposta => {
 
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+        if (resposta.ok) {
+          resposta.json().then(resposta => {
 
-                        var dados = {
-                            umidade: resposta[0].umidade,
-                        }
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                        alertar1(resposta[0].umidade, idSensor);
-                    });
-                } else {
+            var dados = {
+              umidade: resposta[0].umidade,
+            }
 
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-            });
-    }
+            alertar1(resposta[0].umidade, idSensor);
+          });
+        } else {
 
-    function alertar1(umidade, idSensor) {
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+      });
+  }
 
-        // var limites = {
-        //     muito_quente: 23,
-        //     quente: 22,
-        //     ideal: 20,
-        //     frio: 10,
-        //     muito_frio: 5
-        // };
+  function alertar1(umidade, idSensor) {
 
-        // var classe_temperatura = 'cor-alerta';
+    // var limites = {
+    //     muito_quente: 23,
+    //     quente: 22,
+    //     ideal: 20,
+    //     frio: 10,
+    //     muito_frio: 5
+    // };
 
-        // if (temperatura >= limites.muito_quente) {
-        //     classe_temperatura = 'cor-alerta perigo-quente';
-        //     console.log("caiu no 1")
-        // }
-        // else if (temperatura < limites.muito_quente && temperatura >= limites.quente) {
-        //     classe_temperatura = 'cor-alerta alerta-quente';
-        //     console.log("caiu no 2")
-        // }
-        // else if (temperatura < limites.quente && temperatura > limites.frio) {
-        //     classe_temperatura = 'cor-alerta ideal';
-        //     console.log("caiu no 3")
-        // }
-        // else if (temperatura <= limites.frio && temperatura > limites.muito_frio) {
-        //     classe_temperatura = 'cor-alerta alerta-frio';
-        //     console.log("caiu no 4")
-        // }
-        // else if (temperatura < limites.min_temperatura) {
-        //     classe_temperatura = 'cor-alerta perigo-frio';
-        //     console.log("caiu no 5")
-        // }
+    // var classe_temperatura = 'cor-alerta';
 
-        // var card;
+    // if (temperatura >= limites.muito_quente) {
+    //     classe_temperatura = 'cor-alerta perigo-quente';
+    //     console.log("caiu no 1")
+    // }
+    // else if (temperatura < limites.muito_quente && temperatura >= limites.quente) {
+    //     classe_temperatura = 'cor-alerta alerta-quente';
+    //     console.log("caiu no 2")
+    // }
+    // else if (temperatura < limites.quente && temperatura > limites.frio) {
+    //     classe_temperatura = 'cor-alerta ideal';
+    //     console.log("caiu no 3")
+    // }
+    // else if (temperatura <= limites.frio && temperatura > limites.muito_frio) {
+    //     classe_temperatura = 'cor-alerta alerta-frio';
+    //     console.log("caiu no 4")
+    // }
+    // else if (temperatura < limites.min_temperatura) {
+    //     classe_temperatura = 'cor-alerta perigo-frio';
+    //     console.log("caiu no 5")
+    // }
 
-        // if (idAquario == 1) {
-        //     temp_aquario_1.innerHTML = temperatura + "°C";
-        //     card = card_1
-        // } else if (idAquario == 2) {
-        //     temp_aquario_2.innerHTML = temperatura + "°C";
-        //     card = card_2
-        // } else if (idAquario == 3) {
-        //     temp_aquario_3.innerHTML = temperatura + "°C";
-        //     card = card_3
-        // } else if (idAquario == 4) {
-        //     temp_aquario_4.innerHTML = temperatura + "°C";
-        //     card = card_4
-        // }
+    // var card;
 
-        valorUmi.innerHTML = umidade+"%";
-        console.log("minha temp atual"+ umidade)
+    // if (idAquario == 1) {
+    //     temp_aquario_1.innerHTML = temperatura + "°C";
+    //     card = card_1
+    // } else if (idAquario == 2) {
+    //     temp_aquario_2.innerHTML = temperatura + "°C";
+    //     card = card_2
+    // } else if (idAquario == 3) {
+    //     temp_aquario_3.innerHTML = temperatura + "°C";
+    //     card = card_3
+    // } else if (idAquario == 4) {
+    //     temp_aquario_4.innerHTML = temperatura + "°C";
+    //     card = card_4
+    // }
 
-        // alterando
-        // card.className = classe_temperatura;
+    valorUmi.innerHTML = umidade + "%";
+    console.log("minha temp atual" + umidade)
 
-    }
+    // alterando
+    // card.className = classe_temperatura;
+
+  }
 
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
@@ -404,7 +423,7 @@ function atualizacaoPeriodica() {
       });
   }
 
-  
+
   function obterDadosGrafico2(idSensor) {
     if (proximaAtualizacao2 != undefined) {
       clearTimeout(proximaAtualizacao2);

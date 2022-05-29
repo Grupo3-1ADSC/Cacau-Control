@@ -268,12 +268,12 @@
 .divPainelItem span{
     font-size: 0.9rem;
 }
-.divPainelItem.temp h1 {
+/* .divPainelItem.temp h1 {
     color: #F47780 ;
-}
-.divPainelItem.temp i {
+} */
+/* .divPainelItem.temp i {
     color: #F47780 ;
-}
+} */
 .divPainelItem.umi h1 {
     color: #2DB5B2 ;
 }
@@ -342,6 +342,7 @@
     overflow: auto;
     flex-wrap: wrap;
     box-shadow: 4px 4px 10px rgba(0, 118, 135, 0.1), 0px 1px 20px rgba(0, 118, 135, 0.1);
+   
 }
 
 
@@ -372,7 +373,14 @@
     margin-top:5%;
     background-color: white;
     border-radius: 10px 10px 10px 10px;
-    cursor: pointer;
+    cursor: pointer;   
+    transition:200ms;
+    
+}
+
+.itemCardAlarm:hover{
+     filter: drop-shadow(3px 3px 5px rgb(184, 184, 184));
+     transform: scale(101.5%);
 }
 
 .itemCardAlarm h2{
@@ -380,6 +388,7 @@
     color: #F47780;
     margin: 0;
     margin-top:10%;
+   
 }
 .itemCardAlarm i{
     font-size: 1.4rem;
@@ -388,7 +397,7 @@
 .divInfoAlarm{
     width: 100%;
     height: 25%;
-    background-color: #F47780;
+    /* background-color: #F47780; */
     border-radius: 0 0 10px 10px;
     display: flex;
     font-size: 0.9rem;
