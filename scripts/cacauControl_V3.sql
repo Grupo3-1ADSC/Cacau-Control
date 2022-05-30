@@ -65,11 +65,6 @@ luminosidade decimal(10,2),
 lm35_temperatura decimal(10,2),
 chave int,
 momento datetime default current_timestamp,
-Alerta_Temperatura char(15),
-check( Alerta_Temperatura='critico' or Alerta_Temperatura= 'normal' or Alerta_Temperatura='alerta'),
-Alerta_Umidade char(15),
-check(Alerta_Umidade ='critico' or Alerta_Umidade= 'normal' or Alerta_Umidade='alerta'),
-FkSensor_dht11 int,
 foreign key (FkSensor_dht11) references Sensor(idSensor)
 );
 
@@ -127,10 +122,6 @@ luminosidade decimal(10,2),
 lm35_temperatura decimal(10,2),
 chave int,
 momento datetime default current_timestamp,
-Alerta_Temperatura char(15),
-check( Alerta_Temperatura='critico' or Alerta_Temperatura= 'normal' or Alerta_Temperatura='alerta'),
-Alerta_Umidade char(15),
-check(Alerta_Umidade ='critico' or Alerta_Umidade= 'normal' or Alerta_Umidade='alerta'),
 FkSensor_dht11 int,
 foreign key (FkSensor_dht11) references Sensor(idSensor)
 ); 
