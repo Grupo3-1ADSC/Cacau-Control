@@ -1,34 +1,47 @@
+
+
 const serialport = require('serialport');
 const express = require('express');
 const mysql = require('mysql2');
-
+const sql = require('mssql');
 
 const SERIAL_BAUD_RATE = 9600;
-const SERVIDOR_PORTA = 3000;
+const SERVIDOR_PORTA = 3300;
 const HABILITAR_OPERACAO_INSERIR = true;
 
+// escolha deixar a linha 'desenvolvimento' descomentada se quiser conectar seu arduino ao banco de dados local, MySQL Workbench
+// const AMBIENTE = 'desenvolvimento';
+
+// escolha deixar a linha 'producao' descomentada se quiser conectar seu arduino ao banco de dados remoto, SQL Server
+ const AMBIENTE = 'desenvolvimento';
+
 const serial = async (
-    
     valoresDht11Umidade,
     valoresDht11Temperatura,
     valoresLuminosidade,
     valoresLm35Temperatura,
     valoresChave
 ) => {
+    let poolBancoDados = ''
 
+    if (AMBIENTE == 'desenvolvimento') {
+        poolBancoDados = mysql.createPool(
+            {
+                // CREDENCIAIS DO BANCO LOCAL - MYSQL WORKBENCH
+                host: 'localhost',
+                user: 'aluno',
+                password: 'sptech',
+                database: 'CacauControl'
+            }
+        ).promise();
+    } else if (AMBIENTE == 'producao') {
 
-    const poolBancoDados = mysql.createPool( // create poll abre conexao com o banco
-        {
+        console.log('Projeto rodando inserindo dados em nuvem. Configure as credenciais abaixo.')
 
+    } else {
+        throw new Error('Ambiente não configurado. Verifique o arquivo "main.js" e tente novamente.');
+    }
 
-        // cria um usuario que possa fazer apenas inserts e coloca aqui para proteção dos dados 
-            host: 'localhost',
-            port: 3306,
-            user: 'aluno',
-            password: 'sptech',
-            database: 'CacauControl'
-        }
-    ).promise(); // espera que aconteça alguma coisa para assim realizar a conexao com o banco
 
     const portas = await serialport.SerialPort.list();
     const portaArduino = portas.find((porta) => porta.vendorId == 2341 && porta.productId == 43);
@@ -45,49 +58,66 @@ const serial = async (
         console.log(`A leitura do arduino foi iniciada na porta ${portaArduino.path} utilizando Baud Rate de ${SERIAL_BAUD_RATE}`);
     });
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
-        const valores = data.split(';');  // separar string que vem do serial print do arduino ['90.00' '25.00' '300' '29.8' '0']
-        const dht11Umidade = parseFloat(valores[0]); // parsefloat transforma em valor numerico
+        const valores = data.split(';');
+        const dht11Umidade = parseFloat(valores[0]);
         const dht11Temperatura = parseFloat(valores[1]);
-        const luminosidade = parseFloat(valores[3]);
-        const lm35Temperatura = parseFloat(valores[2]);
+        const luminosidade = parseFloat(valores[2]);
+        const lm35Temperatura = parseFloat(valores[3]);
         const chave = parseInt(valores[4]);
-
-        // vetor valores luminosidade que vai alimentar o endpoint 
 
         valoresDht11Umidade.push(dht11Umidade);
         valoresDht11Temperatura.push(dht11Temperatura);
         valoresLuminosidade.push(luminosidade);
         valoresLm35Temperatura.push(lm35Temperatura);
-        valoresChave.push(chave);  
+        valoresChave.push(chave);
 
-        // se for verdadeiro 
-        // pega as credenciais da promessa e abre a conexao e insere ao banco 
         if (HABILITAR_OPERACAO_INSERIR) {
 
+            if (AMBIENTE == 'producao') {
 
-            await poolBancoDados.execute(
-                'INSERT INTO hist_medicao (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fkSensor_dht11) VALUES (?, ?, ?, ?, ?, (select idsensor from sensor where n_serial=1010))',
-                [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
+                // Este insert irá inserir os dados na tabela "hist_medicao" -> altere se necessário
+                // Este insert irá inserir dados do sensor com n_serial = 1010
+                sqlquery = `INSERT INTO hist_medicao (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fkSensor_dht11) VALUES (?, ?, ?, ?, ?, (select idsensor from sensor where n_serial=1010))`;
 
-            );
-            console.log("valores inseridos no banco: ", dht11Umidade + ", " + dht11Temperatura + ", " + luminosidade + ", " + lm35Temperatura + ", " + chave )
+                
+
+                // CREDENCIAIS DO BANCO REMOTO - SQL SERVER
+                const connStr = "Server=servidor-acquatec.database.windows.net;Database=bd-acquatec;User Id=usuarioParaAPIArduino_datawriter;Password=#Gf_senhaParaAPI;";
+
+                function inserirComando(conn, sqlquery) {
+                    conn.query(sqlquery);
+                    console.log("valores inseridos no banco: ", dht11Umidade + ", " + dht11Temperatura + ", " + luminosidade + ", " + lm35Temperatura + ", " + chave)
+                }
+
+                sql.connect(connStr)
+                    .then(conn => inserirComando(conn, sqlquery))
+                    .catch(err => console.log("erro! " + err));
+
+            } else if (AMBIENTE == 'desenvolvimento') {
+
+                // Este insert irá inserir os dados na tabela "hist_medicao" -> altere se necessário
+                // Este insert irá inserir dados do sensor com n_serial = 1010
+                await poolBancoDados.execute(
+                    'INSERT INTO hist_medicao (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fkSensor_dht11) VALUES (?, ?, ?, ?, ?, (select idsensor from sensor where n_serial=1010))',
+                    [dht11Umidade, dht11Temperatura, luminosidade, lm35Temperatura, chave]
+                );
+
+                await poolBancoDados.execute(
+                    'INSERT INTO hist_medicao (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fkSensor_dht11) VALUES (?, ?, ?, ?, ?, (select idsensor from sensor where n_serial=1011))',
+                    [dht11Umidade*1.4, dht11Temperatura*1.2, luminosidade, lm35Temperatura, chave]
+                );
+
+                await poolBancoDados.execute(
+                    'INSERT INTO hist_medicao (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fkSensor_dht11) VALUES (?, ?, ?, ?, ?, (select idsensor from sensor where n_serial=1012))',
+                    [dht11Umidade*1.75, dht11Temperatura*1.5, luminosidade, lm35Temperatura, chave]
+                );
+                console.log("valores inseridos no banco: ", dht11Umidade + ", " + dht11Temperatura + ", " + luminosidade + ", " + lm35Temperatura + ", " + chave)
+
+            } else {
+                throw new Error('Ambiente não configurado. Verifique o arquivo "main.js" e tente novamente.');
+            }
+
         }
-
-        await poolBancoDados.execute(
-            'UPDATE hist_medicao set hist_medicao.alerta_temperatura = "critico" where dht11_temperatura <= "21" ',
-            'UPDATE hist_medicao set hist_medicao.alerta_temperatura = "alerta" where dht11_temperatura > "21" ',
-            'UPDATE hist_medicao set hist_medicao.alerta_temperatura = "normal" where dht11_temperatura >= "24" ',
-            'UPDATE hist_medicao set hist_medicao.alerta_temperatura = "alerta" where dht11_temperatura >= "27" ',
-            'UPDATE hist_medicao set hist_medicao.alerta_temperatura = "critico" where dht11_temperatura >= "29" ',
-
-            'UPDATE hist_medicao set hist_medicao.alerta_umidade = "critico" where dht11_umidade <= "70" ',
-            'UPDATE hist_medicao set hist_medicao.alerta_umidade = "alerta" where dht11_umidade > "70" ',
-            'UPDATE hist_medicao set hist_medicao.alerta_umidade = "normal" where dht11_umidade >= "73" ',
-            'UPDATE hist_medicao set hist_medicao.alerta_umidade = "alerta" where dht11_umidade >= "81" ',
-            'UPDATE hist_medicao set hist_medicao.alerta_umidade = "critico" where dht11_umidade >= "84" ',
-
-        );
-        console.log("Atualizando a situaçao/alerta do sensor")
 
     });
     arduino.on('error', (mensagem) => {
@@ -115,7 +145,7 @@ const servidor = (
         return response.json(valoresDht11Umidade);
     });
     app.get('/sensores/dht11/temperatura', (_, response) => {
-        return response.json(valoresDht11Temperatura);  // alimentando o endpoint -> que alimenta o grafico
+        return response.json(valoresDht11Temperatura);
     });
     app.get('/sensores/luminosidade', (_, response) => {
         return response.json(valoresLuminosidade);
@@ -149,3 +179,4 @@ const servidor = (
         valoresChave
     );
 })();
+
