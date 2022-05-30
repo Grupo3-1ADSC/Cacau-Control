@@ -108,30 +108,35 @@
           <h4>Alarmes</h4>
         </div>
         <div class="divCardAlarms">
+
+          <!-- temperatura -->
           <div id="card_1" onclick="botao1()" class="itemCardAlarm critico">
             <h2>Sens.1</h2>
-            <i class="fa fa-solid fa-satellite-dish"></i>
+            <i class="fa fa-solid fa-temperature-low"></i>
 
             <div id="card_1text" class="divInfoAlarm critico">CRÍTICO</div>
           </div>
 
           <div id="card_2" onclick="botao2()" class="itemCardAlarm normal">
             <h2>Sens.2</h2>
-            <i class="fa fa-solid fa-satellite-dish"></i>
+            <i class="fa fa-solid fa-temperature-low"></i>
             <div id="card_2text" class="divInfoAlarm normal">ESTÁVEL</div>
           </div>
-          <!-- <div class="itemCardAlarm alerta">
-            <h2>Sens.3</h2>
-            <i class="fa fa-solid fa-satellite-dish"></i>
-            <div class="divInfoAlarm alerta">ALERTA</div>
-          </div>
-          <div class="itemCardAlarm alerta">
-            <h2>Sens.4</h2>
-            <i class="fa fa-solid fa-satellite-dish"></i>
-            <div class="divInfoAlarm alerta">ALERTA</div>
+
+          <!-- Umidade -->
+          <div id="card_3" onclick="botao3()" class="itemCardAlarm alerta">
+            <h2>Sens.1</h2>
+            <i class="fa fa-solid fa-water"></i>
+            <div id="card_3text" class="divInfoAlarm alerta">ALERTA</div>
           </div>
 
-          <div class="itemCardAlarm critico">
+          <div id="card_4" onclick="botao4()" class="itemCardAlarm alerta">
+            <h2>Sens.2</h2>
+            <i class="fa fa-solid fa-water"></i>
+            <div id="card_4text" class="divInfoAlarm alerta">ALERTA</div>
+          </div>
+
+          <!-- <div class="itemCardAlarm critico">
             <h2>Sens.5</h2>
             <i class="fa fa-solid fa-satellite-dish"></i>
             <div class="divInfoAlarm critico">CRÍTICO</div>
@@ -144,8 +149,8 @@
           <div class="itemCardAlarm critico">
             <h2>Sens.7</h2>
             <i class="fa fa-solid fa-satellite-dish"></i>
-            <div class="divInfoAlarm critico">CRÍTICO</div> -->
-          </div>
+            <div class="divInfoAlarm critico">CRÍTICO</div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -181,6 +186,18 @@
     window.onload = obterDadosGrafico2(idSensor);
   }
 
+  function botao3() {
+    idSensor = 1
+    window.onload = obterDadosGrafico(idSensor);
+    window.onload = obterDadosGrafico2(idSensor);
+  }
+
+  function botao4() {
+    idSensor = 2
+    window.onload = obterDadosGrafico(idSensor);
+    window.onload = obterDadosGrafico2(idSensor);
+  }
+
   // essa função está recarregando os gráficos de 2 em 2 
   // segundos
   function atualizacaoPeriodica() {
@@ -193,6 +210,8 @@
     obterDadosTemperatura(idSensor)
 
     obterDadosUmidadeSens1(1);
+    obterDadosUmidadeSens2(2)
+    
 
     // obterDadosUmidade(idSensor)
     setTimeout(atualizacaoPeriodica, 2000);
@@ -437,190 +456,205 @@
 
 
 
-  // function obterDadosUmidadeSens1(idSensor1) {
-  //   fetch(`/medidas/tempo-realUmidade/${idSensor1 = 1}`)
-  //     .then(resposta => {
+  function obterDadosUmidadeSens1(idSensor1) {
+    fetch(`/medidas/tempo-realUmidade/${idSensor1 = 1}`)
+      .then(resposta => {
 
-  //       if (resposta.ok) {
-  //         resposta.json().then(resposta => {
+        if (resposta.ok) {
+          resposta.json().then(resposta => {
 
-  //           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-  //           var dados = {
-  //             umidadeSens1: resposta[0].umidade,
-  //           }
+            var dados = {
+              umidadeSens1: resposta[0].umidade,
+            }
 
-  //           alertarUmiSens1(resposta[0].umidade, idSensor1);
-  //         });
-  //       } else {
+            alertarUmiSens1(resposta[0].umidade, idSensor1);
+          });
+        } else {
 
-  //         console.error('Nenhum dado encontrado ou erro na API');
-  //       }
-  //     })
-  //     .catch(function (error) {
-  //       console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-  //     });
-  // }
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+      });
+  }
 
-  // function alertarUmiSens1(umidadeSens1, idSensor1) {
+  function alertarUmiSens1(umidadeSens1, idSensor1) {
 
-  //   var limitesUmidade = {
-  //     muito_umido: 84,
-  //     acima_umido: 81,
-  //     // ideal: 24/26,
-  //     abaixo_umido: 73,
-  //     muitoAbaixo_umido: 70
-  //   };
+    var limitesUmidade = {
+      muito_umido: 84,
+      acima_umido: 81,
+      // ideal: 24/26,
+      abaixo_umido: 73,
+      muitoAbaixo_umido: 70
+    };
 
-  //   var classe_temperaturaText = 'divInfoAlarm';
-  //   var classe_temperatura = 'itemCardAlarm';
-  //   var texto1 = ""
-  //   var texto2 = ""
-  //   // var
+    var classe_temperaturaText = 'divInfoAlarm';
+    var classe_temperatura = 'itemCardAlarm';
+    var texto1 = ""
+    var texto2 = ""
+    // var
     
-  //   if (umidadeSens1 >= limitesUmidade.muito_umido) {
-  //     texto1 = "Critico"
-  //     texto2 = "Critico"
-  //     // realTemp.style.color="#F47780"
-  //     classe_temperatura = 'itemCardAlarm critico';
-  //     classe_temperaturaText = 'divInfoAlarm critico'
-  //     console.log("caiu no 1")
-  //   }
-  //   else if (umidadeSens1 < limitesUmidade.muito_umido && umidadeSens1 >= limitesUmidade.acima_umido) {
-  //     texto1 = "Alerta"
-  //     texto2 = "Alerta"
-  //     // realTemp.style.color="#DBBA01"
-  //     classe_temperatura = 'itemCardAlarm alerta';
-  //     classe_temperaturaText = 'divInfoAlarm alerta'
-  //     console.log("caiu no 2")
-  //   }
-  //   else if (umidadeSens1 < limitesUmidade.acima_umido && umidadeSens1 > limitesUmidade.abaixo_umido) {
-  //     texto1 = "normal"
-  //     texto2 = "normal"
-  //     // realTemp.style.color="#2DB5B2"
-  //     classe_temperatura = 'itemCardAlarm normal';
-  //     classe_temperaturaText = 'divInfoAlarm normal'
-  //     console.log("caiu no 3")
-  //   }
-  //   else if (umidadeSens1 <= limitesUmidade.abaixo_umido && umidadeSens1 > limitesUmidade.muitoAbaixo_umido) {
-  //     texto1 = "Alerta"
-  //     texto2 = "Alerta"
-  //     // realTemp.style.color="#DBBA01"
-  //     classe_temperatura = 'itemCardAlarm alerta';
-  //     classe_temperaturaText = 'divInfoAlarm alerta'
-  //     console.log("caiu no 4")
-  //   }
-  //   else if (umidadeSens1 < limitesUmidade.muitoAbaixo_umido) {
-  //     texto1 = "Critico"
-  //     texto2 = "Critico"
-  //     // realTemp.style.color="#F47780"
-  //     classe_temperatura = 'itemCardAlarm critico';
-  //     classe_temperaturaText = 'divInfoAlarm critico'
-  //     console.log("caiu no 5")
-  //   }
+    if (umidadeSens1 >= limitesUmidade.muito_umido) {
+      texto1 = "Critico"
+      texto2 = "Critico"
+      // realTemp.style.color="#F47780"
+      classe_temperatura = 'itemCardAlarm critico';
+      classe_temperaturaText = 'divInfoAlarm critico'
+      console.log("caiu no 1")
+    }
+    else if (umidadeSens1 < limitesUmidade.muito_umido && umidadeSens1 >= limitesUmidade.acima_umido) {
+      texto1 = "Alerta"
+      texto2 = "Alerta"
+      // realTemp.style.color="#DBBA01"
+      classe_temperatura = 'itemCardAlarm alerta';
+      classe_temperaturaText = 'divInfoAlarm alerta'
+      console.log("caiu no 2")
+    }
+    else if (umidadeSens1 < limitesUmidade.acima_umido && umidadeSens1 > limitesUmidade.abaixo_umido) {
+      texto1 = "normal"
+      texto2 = "normal"
+      // realTemp.style.color="#2DB5B2"
+      classe_temperatura = 'itemCardAlarm normal';
+      classe_temperaturaText = 'divInfoAlarm normal'
+      console.log("caiu no 3")
+    }
+    else if (umidadeSens1 <= limitesUmidade.abaixo_umido && umidadeSens1 > limitesUmidade.muitoAbaixo_umido) {
+      texto1 = "Alerta"
+      texto2 = "Alerta"
+      // realTemp.style.color="#DBBA01"
+      classe_temperatura = 'itemCardAlarm alerta';
+      classe_temperaturaText = 'divInfoAlarm alerta'
+      console.log("caiu no 4")
+    }
+    else if (umidadeSens1 < limitesUmidade.muitoAbaixo_umido) {
+      texto1 = "Critico"
+      texto2 = "Critico"
+      // realTemp.style.color="#F47780"
+      classe_temperatura = 'itemCardAlarm critico';
+      classe_temperaturaText = 'divInfoAlarm critico'
+      console.log("caiu no 5")
+    }
 
-  //   var itemCardAlarm;
-  //   var divInfoAlarm;
+    var itemCardAlarm;
+    var divInfoAlarm;
 
     
-  //     card_1text.innerHTML = texto1
+      card_3text.innerHTML = texto1
       
-  //     itemCardAlarm = card_1
-  //     divInfoAlarm = card_1text
+      itemCardAlarm = card_3
+      divInfoAlarm = card_3text
 
-  //   // alterando
-  //   itemCardAlarm.className = classe_temperatura;
-  //   divInfoAlarm.className = classe_temperaturaText;
+    // alterando
+    itemCardAlarm.className = classe_temperatura;
+    divInfoAlarm.className = classe_temperaturaText;
 
     
 
-  //   // alterando
-  //   // card.className = classe_temperatura;
+    // alterando
+    // card.className = classe_temperatura;
 
-  // }
+  }
 
 
-  // function obterDadosUmidadeSens2(idSensor2) {
-  //   fetch(`/medidas/tempo-realUmidade/${idSensor}`)
-  //     .then(resposta => {
+  function obterDadosUmidadeSens2(idSensor2) {
+    fetch(`/medidas/tempo-realUmidade/${idSensor2 = 2}`)
+      .then(resposta => {
 
-  //       if (resposta.ok) {
-  //         resposta.json().then(resposta => {
+        if (resposta.ok) {
+          resposta.json().then(resposta => {
 
-  //           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-  //           var dados = {
-  //             umidade: resposta[0].umidade,
-  //           }
+            var dados = {
+              umidadeSens2: resposta[0].umidade,
+            }
 
-  //           alertar1(resposta[0].umidade, idSensor);
-  //         });
-  //       } else {
+            alertarUmiSens2(resposta[0].umidade, idSensor2);
+          });
+        } else {
 
-  //         console.error('Nenhum dado encontrado ou erro na API');
-  //       }
-  //     })
-  //     .catch(function (error) {
-  //       console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-  //     });
-  // }
+          console.error('Nenhum dado encontrado ou erro na API');
+        }
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+      });
+  }
 
-  // function alertarUmiSens2(umidadeSens2, idSensor2) {
+  function alertarUmiSens2(umidadeSens2, idSensor2) {
 
-  //   // var limites = {
-  //   //     muito_quente: 23,
-  //   //     quente: 22,
-  //   //     ideal: 20,
-  //   //     frio: 10,
-  //   //     muito_frio: 5
-  //   // };
+    var limitesUmidade = {
+      muito_umido: 84,
+      acima_umido: 81,
+      // ideal: 24/26,
+      abaixo_umido: 73,
+      muitoAbaixo_umido: 70
+    };
 
-  //   // var classe_temperatura = 'cor-alerta';
+    var classe_temperaturaText = 'divInfoAlarm';
+    var classe_temperatura = 'itemCardAlarm';
+    var texto1 = ""
+    var texto2 = ""
+    // var
+    
+    if (umidadeSens2 >= limitesUmidade.muito_umido) {
+      texto1 = "Critico"
+      texto2 = "Critico"
+      // realTemp.style.color="#F47780"
+      classe_temperatura = 'itemCardAlarm critico';
+      classe_temperaturaText = 'divInfoAlarm critico'
+      console.log("caiu no 1 umidade teste")
+    }
+    else if (umidadeSens2 < limitesUmidade.muito_umido && umidadeSens2 >= limitesUmidade.acima_umido) {
+      texto1 = "Alerta"
+      texto2 = "Alerta"
+      // realTemp.style.color="#DBBA01"
+      classe_temperatura = 'itemCardAlarm alerta';
+      classe_temperaturaText = 'divInfoAlarm alerta'
+      console.log("caiu no 2")
+    }
+    else if (umidadeSens2 < limitesUmidade.acima_umido && umidadeSens2 > limitesUmidade.abaixo_umido) {
+      texto1 = "normal"
+      texto2 = "normal"
+      // realTemp.style.color="#2DB5B2"
+      classe_temperatura = 'itemCardAlarm normal';
+      classe_temperaturaText = 'divInfoAlarm normal'
+      console.log("caiu no 3")
+    }
+    else if (umidadeSens2 <= limitesUmidade.abaixo_umido && umidadeSens2 > limitesUmidade.muitoAbaixo_umido) {
+      texto1 = "Alerta"
+      texto2 = "Alerta"
+      // realTemp.style.color="#DBBA01"
+      classe_temperatura = 'itemCardAlarm alerta';
+      classe_temperaturaText = 'divInfoAlarm alerta'
+      console.log("caiu no 4")
+    }
+    else if (umidadeSens2 < limitesUmidade.muitoAbaixo_umido) {
+      texto1 = "Critico"
+      texto2 = "Critico"
+      // realTemp.style.color="#F47780"
+      classe_temperatura = 'itemCardAlarm critico';
+      classe_temperaturaText = 'divInfoAlarm critico'
+      console.log("caiu no 5")
+    }
 
-  //   // if (temperatura >= limites.muito_quente) {
-  //   //     classe_temperatura = 'cor-alerta perigo-quente';
-  //   //     console.log("caiu no 1")
-  //   // }
-  //   // else if (temperatura < limites.muito_quente && temperatura >= limites.quente) {
-  //   //     classe_temperatura = 'cor-alerta alerta-quente';
-  //   //     console.log("caiu no 2")
-  //   // }
-  //   // else if (temperatura < limites.quente && temperatura > limites.frio) {
-  //   //     classe_temperatura = 'cor-alerta ideal';
-  //   //     console.log("caiu no 3")
-  //   // }
-  //   // else if (temperatura <= limites.frio && temperatura > limites.muito_frio) {
-  //   //     classe_temperatura = 'cor-alerta alerta-frio';
-  //   //     console.log("caiu no 4")
-  //   // }
-  //   // else if (temperatura < limites.min_temperatura) {
-  //   //     classe_temperatura = 'cor-alerta perigo-frio';
-  //   //     console.log("caiu no 5")
-  //   // }
+    var itemCardAlarm;
+    var divInfoAlarm;
 
-  //   // var card;
+    
+      card_4text.innerHTML = texto2
+      
+      itemCardAlarm = card_4
+      divInfoAlarm = card_4text
 
-  //   // if (idAquario == 1) {
-  //   //     temp_aquario_1.innerHTML = temperatura + "°C";
-  //   //     card = card_1
-  //   // } else if (idAquario == 2) {
-  //   //     temp_aquario_2.innerHTML = temperatura + "°C";
-  //   //     card = card_2
-  //   // } else if (idAquario == 3) {
-  //   //     temp_aquario_3.innerHTML = temperatura + "°C";
-  //   //     card = card_3
-  //   // } else if (idAquario == 4) {
-  //   //     temp_aquario_4.innerHTML = temperatura + "°C";
-  //   //     card = card_4
-  //   // }
+    // alterando
+    itemCardAlarm.className = classe_temperatura;
+    divInfoAlarm.className = classe_temperaturaText;
 
-  //   valorUmi.innerHTML = umidade + "%";
-  //   console.log("minha umidade atual" + umidade)
-
-  //   // alterando
-  //   // card.className = classe_temperatura;
-
-  // }
+  }
 
 
 
