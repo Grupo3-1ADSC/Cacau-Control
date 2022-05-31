@@ -10,10 +10,10 @@ const SERVIDOR_PORTA = 3300;
 const HABILITAR_OPERACAO_INSERIR = true;
 
 // escolha deixar a linha 'desenvolvimento' descomentada se quiser conectar seu arduino ao banco de dados local, MySQL Workbench
- const AMBIENTE = 'desenvolvimento';
+// const AMBIENTE = 'desenvolvimento';
 
 // escolha deixar a linha 'producao' descomentada se quiser conectar seu arduino ao banco de dados remoto, SQL Server
- //const AMBIENTE = 'producao';
+ const AMBIENTE = 'producao';
 
 const serial = async (
     valoresDht11Umidade,
@@ -75,23 +75,45 @@ const serial = async (
 
             if (AMBIENTE == 'producao') {
 
-                // Este insert irá inserir os dados na tabela "hist_medicao" -> altere se necessário
-                // Este insert irá inserir dados do sensor com n_serial = 1010
-                sqlquery = `INSERT INTO hist_medicao (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fkSensor_dht11) VALUES (${dht11Umidade}, ${dht11Temperatura}, ${luminosidade}, ${lm35Temperatura}, ${chave}, '1')`;
+
+                // Este insert irá inserir dados do sensor com fk 1 
+                sqlquery1 = `INSERT INTO hist_medicao (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fkSensor_dht11) VALUES (${dht11Umidade}, ${dht11Temperatura}, ${luminosidade}, ${lm35Temperatura}, ${chave}, '1')`;
+                // Este insert irá inserir dados do sensor com fk 2
+                sqlquery2 = `INSERT INTO hist_medicao (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fkSensor_dht11) VALUES (${dht11Umidade*1.4}, ${dht11Temperatura*1.2}, ${luminosidade}, ${lm35Temperatura}, ${chave}, '2')`;
+                // Este insert irá inserir dados do sensor com fk 3
+                sqlquery3 = `INSERT INTO hist_medicao (dht11_umidade, dht11_temperatura, luminosidade, lm35_temperatura, chave, fkSensor_dht11) VALUES (${dht11Umidade*1.75}, ${dht11Temperatura*1.5}, ${luminosidade}, ${lm35Temperatura}, ${chave}, '3')`;
                 
                
 
                 // CREDENCIAIS DO BANCO REMOTO - SQL SERVER
                 const connStr = "Server=servidor-cacaucontrol.database.windows.net;Database=bd-cacauControl;User Id=usuarioParaAPIArduino_datawriter;Password=#Gf_senhaParaAPI;";
 
-                function inserirComando(conn, sqlquery) {
-                    conn.query(sqlquery);
+                function inserirComando(conn, sqlquery1) {
+                    conn.query(sqlquery1);
+                    console.log("valores inseridos no banco: ", dht11Umidade + ", " + dht11Temperatura + ", " + luminosidade + ", " + lm35Temperatura + ", " + chave)
+                }
+
+                function inserirComando(conn, sqlquery2) {
+                    conn.query(sqlquery2);
+                    console.log("valores inseridos no banco: ", dht11Umidade + ", " + dht11Temperatura + ", " + luminosidade + ", " + lm35Temperatura + ", " + chave)
+                }
+
+                function inserirComando(conn, sqlquery3) {
+                    conn.query(sqlquery3);
                     console.log("valores inseridos no banco: ", dht11Umidade + ", " + dht11Temperatura + ", " + luminosidade + ", " + lm35Temperatura + ", " + chave)
                 }
 
                 sql.connect(connStr)
-                    .then(conn => inserirComando(conn, sqlquery))
+                    .then(conn => inserirComando(conn, sqlquery1))
                     .catch(err => console.log("erro! " + err));
+
+                sql.connect(connStr)
+                .then(conn => inserirComando(conn, sqlquery2))
+                .catch(err => console.log("erro! " + err));
+                
+                sql.connect(connStr)
+                .then(conn => inserirComando(conn, sqlquery3))
+                .catch(err => console.log("erro! " + err));
 
             } else if (AMBIENTE == 'desenvolvimento') {
 
