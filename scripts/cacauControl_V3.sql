@@ -65,11 +65,12 @@ luminosidade decimal(10,2),
 lm35_temperatura decimal(10,2),
 chave int,
 momento datetime default current_timestamp,
+fkSensor_dht11 int,
 foreign key (FkSensor_dht11) references Sensor(idSensor)
 );
 
-insert into hist_medicao(dht11_umidade,dht11_temperatura,alerta_temperatura,alerta_umidade,FkSensor_dht11) values
-('50','40','normal','normal','2');
+insert into hist_medicao(dht11_umidade,dht11_temperatura,FkSensor_dht11) values
+('50','40','2');
 
 
 
