@@ -104,3 +104,37 @@ values
 (null, 'jeny', 'orc','guerreira', 500, 800, 4, 10),
 (null, 'nya', 'orc','mago', 700, 500, 4, 1),
 (null, 'hastur', 'humano','guerreiro', 500, 810, 4, 11);
+
+
+create table poderes_do_personagem(
+fkPersonagem int,
+foreign key (fkPersonagem) references personagem (idPersonagem),
+fkPoder int,
+foreign key (fkPoder) references super_poder(id_superpoder));
+
+
+insert into  poderes_do_personagem values
+('1','3'),
+('1','4'),
+('2','3'),
+('4','1'),
+('4','2'),
+('5','6'),
+('6','5'),
+('7','8'),
+('8','7'),
+('9','9'),
+('9','4'),
+('10','3'),
+('11','8'),
+('12','1'),
+('12','3'),
+('13','7'),
+('14','2'),
+('15','5'),
+('16','4'),
+('16','6'),
+('17','4'),
+('18','7'),
+('19','2'),
+('20','8');
